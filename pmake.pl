@@ -55,7 +55,13 @@ sub parse_line {
      
      #if the line is not comment
      if($line !~ /^#.+/){
-        
+ 
+         #if the line is a marco put it into hash       
+         if ($line =~ /\s*(\S+)\s*=\s+(.+)/){
+            my @values = split(" ", $2);
+            $macro_hash_ref->{$1} = [@values];
+        }
+
          #put target as key and prerequisites as value in hash
          if($line =~ /\s*(\S+)\s*:.*/ and $line !~ /\t\s*.+/) {            
             my $target=$1;
@@ -77,13 +83,31 @@ sub parse_line {
          #put corresponding command in hash
          elsif($line =~ /\t\s*(.+)/){
             my $command=$1;
+            my @command_split;
+            if(exists $command_hash_ref->{$current_target}){
+              @command_split=split(" ",$command);
+              push(@{$command_hash_ref->{$current_target}}, @command_split);
+              push(@{$command_hash_ref->{$current_target}}, "\n");
+            }
+            else {
+              $command_hash_ref->{$current_target} = ();
+              @command_split=split(" ",$command);
+              push(@{$command_hash_ref->{$current_target}}, @command_split);
+              push(@{$command_hash_ref->{$current_target}}, "\n");
+            }
+
+             
          }
 
       }
-
+      return $current_target;
 }
 
-#say Dumper(%target_hash);
+print "-------------------\n";
+my $href=\%target_hash;
+say Dumper($href);
+my $href2=\%command_hash;
+say Dumper($href2);
 close $file;
 
 
