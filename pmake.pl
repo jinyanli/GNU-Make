@@ -39,19 +39,10 @@ my $current_target;
 
 push @ARGV, "-" unless @ARGV;
 
-open my $file, "<$filename" or warn "$filename: $!\n" and next;
-while (defined (my $line = <$file>)) {
-      chomp $line;
-      $current_target = &parse_line($line,\%macro_hash,\%target_hash,
-                                          \%command_hash,$current_target);
-      #printf "%s\n", $line;
-      print "\n";
-}
-
 #function for parsing each line
 sub parse_line {
-   my ($line,$macro_hash_ref,$target_hash_ref,
-                                   $command_hash_ref,$current_target)=@_;
+     my ($line,$macro_hash_ref,$target_hash_ref,
+                       $command_hash_ref,$current_target_ref)=@_;
      
      #if the line is not comment
      if($line !~ /^#.+/){
@@ -66,7 +57,7 @@ sub parse_line {
          if($line =~ /\s*(\S+)\s*:.*/ and $line !~ /\t\s*.+/) {            
             my $target=$1;
             print "$target : ";
-            $current_target=$target;
+            $$current_target_ref=$target;
 
             #if the target have prerequisites
             if($line=~/.+:\s+(.+)/){
@@ -86,21 +77,29 @@ sub parse_line {
             my @command_split;
             if(exists $command_hash_ref->{$current_target}){
               @command_split=split(" ",$command);
-              push(@{$command_hash_ref->{$current_target}}, @command_split);
-              push(@{$command_hash_ref->{$current_target}}, "\n");
+              push(@{$command_hash_ref->
+                    {$current_target}}, (@command_split,"\n"));
+
             }
             else {
               $command_hash_ref->{$current_target} = ();
               @command_split=split(" ",$command);
-              push(@{$command_hash_ref->{$current_target}}, @command_split);
-              push(@{$command_hash_ref->{$current_target}}, "\n");
-            }
+              push(@{$command_hash_ref->
+                    {$current_target}}, (@command_split,"\n"));
 
-             
+            }             
          }
-
       }
-      return $current_target;
+}
+
+#main function
+open my $file, "<$filename" or warn "$filename: $!\n" and next;
+while (defined (my $line = <$file>)) {
+      chomp $line;
+      &parse_line($line,\%macro_hash,\%target_hash,
+                              \%command_hash,\$current_target);
+      #printf "%s\n", $line;
+      print "\n";
 }
 
 print "-------------------\n";
