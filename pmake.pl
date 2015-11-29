@@ -114,6 +114,31 @@ sub macro_sub{
     return @value_list;
 }
 
+sub percent_sub {
+    my $extension;
+    foreach my $target (keys %target_hash){
+        if ($target =~ /^%(.+)/){
+            $extension = $1;
+            foreach my $macro (keys %macro_hash){
+                my @values = @{$macro_hash{$macro}};
+                foreach my $value (@values){
+                    if ($value =~ /((\w*)($extension)$)/){
+                        $value =~ s/(.*)\..*/$1/;
+                        my $target = $value . $extension;
+                        my $key =  "%" . $extension;
+                        my $prerequisites = @{$target_hash{$key}}[0];
+                        $prerequisites =~ s/^.//;
+                        $prerequisites = $value . $prerequisites;
+                        my @cmd_list = @{$command_hash{$get}};
+                        map {$_=$prerequisites if $_ =~ /\$</} @cmd_list;
+                        $target_hash{$target} = [$prerequisites];
+                        $command_hash{$target} = [@cmd_list];
+                     }
+                }
+            } 
+        }
+    }
+}
 
 #main function
 open my $file, "<$filename" or warn "$filename: $!\n" and next;
@@ -134,23 +159,8 @@ foreach my $macro_key (keys %macro_hash){
     $macro_hash{$macro_key} = [@macro_values];
 }
 
-#replace macros in targets and prerequistes  
+#replace macros in targets, prerequistes and command 
 #print "------replace macros in targets and prerequistes------\n";
-=pod
-foreach my $target (@prereq_target){
-    my $target_replacement=$target;
-    if($target=~/\${([^}]+)\}/){
-     $target_replacement=@{$macro_hash{$1}}[0];
-    }
-     my @prereq_list=@{$target_hash{$target}};
-     #print "@prereq_list\n";
-     @prereq_list=&macro_sub(\@prereq_list,\%macro_hash);
-     #print "@prereq_list\n";
-     delete $target_hash{$target};
-     @{$target_hash{$target_replacement}}= @prereq_list;
-}
-=cut
-
 foreach my $target (keys %target_hash){
     #print "$target\n";
     my $target_replacement=$target;
@@ -177,8 +187,10 @@ foreach my $target (keys %target_hash){
       }
    }
 }
- 
-=pod
+
+&percent_sub();
+
+#=pod
 print "-------------------\n";
 my $href3=\%macro_hash;
 print "-------------macro--------------\n";
@@ -186,7 +198,7 @@ say Dumper($href3);
 my $href=\%target_hash;
 print "-------------target prerequistes-------------\n";
 say Dumper($href);
-=cut
+#=cut
 
 my $href2=\%command_hash;
 print "------------command-------------\n";
