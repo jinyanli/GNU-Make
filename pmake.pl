@@ -129,7 +129,7 @@ sub percent_sub {
                         my $prerequisites = @{$target_hash{$key}}[0];
                         $prerequisites =~ s/^.//;
                         $prerequisites = $value . $prerequisites;
-                        my @cmd_list = @{$command_hash{$get}};
+                        my @cmd_list = @{$command_hash{$key}};
                         map {$_=$prerequisites if $_ =~ /\$</} @cmd_list;
                         $target_hash{$target} = [$prerequisites];
                         $command_hash{$target} = [@cmd_list];
@@ -188,6 +188,7 @@ foreach my $target (keys %target_hash){
    }
 }
 
+#replace %target
 &percent_sub();
 
 #=pod
