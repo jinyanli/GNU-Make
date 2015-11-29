@@ -25,10 +25,16 @@ print "filename: $filename\n";
 #get user target
 my $len=@ARGV;
 #print "length: $len\n";
-if ($len>=2){
- my $user_target = $ARGV[1];
- print "target: $user_target\n";
+
+my $default_target="";
+my @target_list;
+if ($len>=2){ 
+   for(my $i=0; $i<@ARGV-1; $i++){
+      push(@target_list,$ARGV[$i+1]);      
+   }
 }
+print "target list: @target_list\n";
+
 
 my %macro_hash;
 
@@ -62,7 +68,9 @@ sub parse_line {
             my $target=$1;
             #print "$target : ";
             $current_target=$target;
-
+            if ($default_target eq "") {
+                $default_target = $target;
+            }
             #if the target have prerequisites
             if($line=~/.+:\s+(.+)/){
                my @prerequisite=split(" ",$1);
@@ -191,7 +199,7 @@ foreach my $target (keys %target_hash){
 #replace %target
 &percent_sub();
 
-#=pod
+=pod
 print "-------------------\n";
 my $href3=\%macro_hash;
 print "-------------macro--------------\n";
@@ -199,11 +207,11 @@ say Dumper($href3);
 my $href=\%target_hash;
 print "-------------target prerequistes-------------\n";
 say Dumper($href);
-#=cut
 
 my $href2=\%command_hash;
 print "------------command-------------\n";
 say Dumper($href2);
+=cut
 
 close $file;
 
