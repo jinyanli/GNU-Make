@@ -20,14 +20,14 @@ getopts "dnf", \%opts;
 #get filename
 my $filename = "Makefile";
 $filename = $ARGV[0] if $opts{'f'};
-print $filename."\n";
+print "filename: $filename\n";
 
 #get user target
 my $len=@ARGV;
-print "length: $len\n";
+#print "length: $len\n";
 if ($len>=2){
  my $user_target = $ARGV[1];
- print "$user_target\n";
+ print "target: $user_target\n";
 }
 
 my %macro_hash;
@@ -56,13 +56,13 @@ sub parse_line {
          #put target as key and prerequisites as value in hash
          if($line =~ /\s*(\S+)\s*:.*/ and $line !~ /\t\s*.+/) {            
             my $target=$1;
-            print "$target : ";
+            #print "$target : ";
             $$current_target_ref=$target;
 
             #if the target have prerequisites
             if($line=~/.+:\s+(.+)/){
                my @prerequisite=split(" ",$1);
-               print "@prerequisite";
+               #print "@prerequisite";
                my %target_hash1;
                $target_hash_ref->{$target} = [@prerequisite];
                #say Dumper($target_hash_ref);
@@ -92,6 +92,37 @@ sub parse_line {
       }
 }
 
+sub macro_sub{
+    
+    #my @value_list = @{$_[0]};
+    #my $macro_hash_ref = $_[1];
+    #foreach my $value (@value_list){
+    #print "$value\n";
+    #}
+
+   my @line = @{$_[0]};
+    my $macro_hash = $_[1];
+    my $done_string = "";
+    for(my $count = 0; $count < @line; $count++){
+       my $value = $line[$count];
+       if ($value =~ /(\S+)?\$\{([^\}]+)\}(\S+)?/){
+	  my $pre = $1;
+	  my $post = $3;
+          my @replace_list = @{$macro_hash->{$2}};
+	  $replace_list[0] = $pre . $replace_list[0] if $pre;
+	  $replace_list[-1] = $replace_list[-1] . $post if $post;
+          splice @line, $count, 1, @replace_list;
+          
+       }
+       elsif ($value =~ /\$\{([^\}]+)\}/){
+          my @replace_list = @{$macro_hash->{$1}};
+          splice @line, $count, 1, @replace_list;          
+       }
+    }
+    return @line;
+}
+
+
 #main function
 open my $file, "<$filename" or warn "$filename: $!\n" and next;
 while (defined (my $line = <$file>)) {
@@ -99,14 +130,31 @@ while (defined (my $line = <$file>)) {
       &parse_line($line,\%macro_hash,\%target_hash,
                               \%command_hash,\$current_target);
       #printf "%s\n", $line;
-      print "\n";
+      #print "\n";
 }
 
+#replace macro values that are marco with real values
+foreach my $macro_key (keys %macro_hash){
+    my @macro_values = @{$macro_hash{$macro_key}};
+    #print "$macro_key : @macro_values\n";
+    @macro_values = &macro_sub(\@macro_values,\%macro_hash);
+    print "$macro_key : @macro_values\n";
+
+    #$macro_hash{$myMacro} = [@check_list];
+}
+
+=pod
 print "-------------------\n";
+my $href3=\%macro_hash;
+print "-------------macro--------------\n";
+say Dumper($href3);
 my $href=\%target_hash;
+print "-------------target-------------\n";
 say Dumper($href);
 my $href2=\%command_hash;
+print "------------command-------------\n";
 say Dumper($href2);
+=cut
 close $file;
 
 
