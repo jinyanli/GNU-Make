@@ -227,7 +227,7 @@ print "------------execute commands-------------\n";
 foreach my $target (@ordered_targets){
     if (exists $command_hash{$target}){
        my @cmd_list=@{$command_hash{$target}};
-       map {$_="" if $_ =~ /-/} @cmd_list;
+       map {$_="" if $_ eq "-"} @cmd_list;
         #print "$target : @cmd_list\n";
         my $cmd_txt="";
         for my $cmd (@cmd_list){
