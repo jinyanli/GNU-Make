@@ -23,17 +23,18 @@ $filename = $ARGV[0] if $opts{'f'};
 print "filename: $filename\n";
 
 #get user target
-my $len=@ARGV;
+my $arglen=@ARGV;
 #print "length: $len\n";
 
 my $default_target="";
 my @target_list;
-if ($len>=2){ 
+if ($arglen>=2){ 
    for(my $i=0; $i<@ARGV-1; $i++){
       push(@target_list,$ARGV[$i+1]);      
    }
-}
 print "target list: @target_list\n";
+}
+
 
 
 my %macro_hash;
@@ -199,19 +200,53 @@ foreach my $target (keys %target_hash){
 #replace %target
 &percent_sub();
 
+my @total_target;
+if($arglen>1){
+ push(@total_target,@target_list);
+}else{
+ push(@total_target,$default_target);
+}
+
+#print "total targets: @total_target\n";
+my @ordered_targets;
+for my $target (@total_target){
+  if (exists $target_hash{$target}){
+      if($target_hash{$target} ne ""){
+         my @start_pre = @{$target_hash{$target}};
+         &get_pre(\@start_pre);
+     }
+    push(@ordered_targets, $target);
+  }
+}
+print "ordered_targets: @ordered_targets\n";
+
+
+sub get_pre {
+    my @pre_list = @{$_[0]};
+    foreach my $tar (@pre_list){
+        if (exists $target_hash{$tar}){
+           if($target_hash{$tar} ne ""){
+               my @pass_pre = @{$target_hash{$tar}};
+               &get_pre(\@pass_pre);
+            }
+               push(@ordered_targets, $tar);           
+        }
+    }
+}
 =pod
 print "-------------------\n";
 my $href3=\%macro_hash;
 print "-------------macro--------------\n";
 say Dumper($href3);
+=cut
 my $href=\%target_hash;
 print "-------------target prerequistes-------------\n";
 say Dumper($href);
 
-my $href2=\%command_hash;
-print "------------command-------------\n";
-say Dumper($href2);
-=cut
+#my $href2=\%command_hash;
+#print "------------command-------------\n";
+#say Dumper($href2);
+
 
 close $file;
 
