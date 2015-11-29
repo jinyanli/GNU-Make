@@ -20,19 +20,19 @@ getopts "dnf", \%opts;
 #get filename
 my $filename = "Makefile";
 $filename = $ARGV[0] if $opts{'f'};
-print "filename: $filename\n";
+print "filename: $filename\n" if $opts{'d'};
 
 #get user target
 my $arglen=@ARGV;
-#print "length: $len\n";
+#print "length: $arglen\n";
 
 my $default_target="";
 my @target_list;
-if ($arglen>=2){ 
-   for(my $i=0; $i<@ARGV-1; $i++){
-      push(@target_list,$ARGV[$i+1]);      
+if ($arglen>=1){ 
+   for(my $i=0; $i<@ARGV; $i++){
+       push(@target_list,$ARGV[$i]);      
    }
-print "target list: @target_list\n";
+   print "target list: @target_list\n" if $opts{'d'};
 }
 
 
@@ -200,14 +200,31 @@ foreach my $target (keys %target_hash){
 #replace %target
 &percent_sub();
 
+print "default_target : $default_target\n" if $opts{'d'};
+print "arglen: $arglen\n" if $opts{'d'};
+
+my $f_flag=0;
+
+$f_flag=1 if $opts{'f'};
+print "f_flag : $f_flag\n" if $opts{'d'};
+
 my @total_target;
-if($arglen>1){
- push(@total_target,@target_list);
+
+if ($f_flag){
+     if($arglen>1){
+        push(@total_target,@target_list);
+     }else{
+        push(@total_target,$default_target);
+     }
 }else{
- push(@total_target,$default_target);
+     if($arglen){
+        push(@total_target,@target_list);
+     }else{
+        push(@total_target,$default_target);
+     }
 }
 
-#print "total targets: @total_target\n";
+print "total targets: @total_target\n" if $opts{'d'};
 my @ordered_targets;
 for my $target (@total_target){
   if (exists $target_hash{$target}){
@@ -220,10 +237,10 @@ for my $target (@total_target){
   }
 }
 
-print "ordered_targets: @ordered_targets\n";
+print "ordered_targets: @ordered_targets\n" if $opts{'d'};
 
 #execute commands 
-print "------------execute commands-------------\n";
+print "------------execute commands-------------\n" if $opts{'d'};
 foreach my $target (@ordered_targets){
     if (exists $command_hash{$target}){
        my @cmd_list=@{$command_hash{$target}};
