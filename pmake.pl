@@ -92,34 +92,18 @@ sub parse_line {
       }
 }
 
-sub macro_sub{
-    
-    #my @value_list = @{$_[0]};
-    #my $macro_hash_ref = $_[1];
-    #foreach my $value (@value_list){
-    #print "$value\n";
-    #}
-
-   my @line = @{$_[0]};
-    my $macro_hash = $_[1];
-    my $done_string = "";
-    for(my $count = 0; $count < @line; $count++){
-       my $value = $line[$count];
-       if ($value =~ /(\S+)?\$\{([^\}]+)\}(\S+)?/){
-	  my $pre = $1;
-	  my $post = $3;
-          my @replace_list = @{$macro_hash->{$2}};
-	  $replace_list[0] = $pre . $replace_list[0] if $pre;
-	  $replace_list[-1] = $replace_list[-1] . $post if $post;
-          splice @line, $count, 1, @replace_list;
-          
+sub macro_sub{   
+    my @value_list = @{$_[0]};
+    my $macro_hash_ref = $_[1];
+    my $count=0;
+    foreach my $value (@value_list){
+      if ($value =~ /\$\{([^\}]+)\}/){
+          splice @value_list, $count, 1,
+                     @{$macro_hash_ref->{$1}};          
        }
-       elsif ($value =~ /\$\{([^\}]+)\}/){
-          my @replace_list = @{$macro_hash->{$1}};
-          splice @line, $count, 1, @replace_list;          
-       }
+      $count++;
     }
-    return @line;
+    return @value_list;
 }
 
 
@@ -139,9 +123,9 @@ foreach my $macro_key (keys %macro_hash){
     #print "$macro_key : @macro_values\n";
     @macro_values = &macro_sub(\@macro_values,\%macro_hash);
     print "$macro_key : @macro_values\n";
-
-    #$macro_hash{$myMacro} = [@check_list];
+    $macro_hash{$macro_key} = [@macro_values];
 }
+
 
 =pod
 print "-------------------\n";
