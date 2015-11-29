@@ -61,7 +61,7 @@ sub parse_line {
          if($line =~ /\s*(\S+)\s*:.*/ and $line !~ /\t\s*.+/) {            
             my $target=$1;
             #print "$target : ";
-            $$current_target_ref=$target;
+            $current_target=$target;
 
             #if the target have prerequisites
             if($line=~/.+:\s+(.+)/){
@@ -81,12 +81,14 @@ sub parse_line {
             my $command=$1;
             my @command_split;
             if(exists $command_hash_ref->{$current_target}){
+              #print "cmdhash : $current_target\n";
               @command_split=split(" ",$command);
               push(@{$command_hash_ref->
                     {$current_target}}, (@command_split,"\n"));
 
             }
             else {
+              #print "cmdhash : $current_target\n";
               $command_hash_ref->{$current_target} = ();
               @command_split=split(" ",$command);
               push(@{$command_hash_ref->
@@ -128,17 +130,18 @@ foreach my $macro_key (keys %macro_hash){
     my @macro_values = @{$macro_hash{$macro_key}};
     #print "$macro_key : @macro_values\n";
     @macro_values = &macro_sub(\@macro_values,\%macro_hash);
-    print "$macro_key : @macro_values\n";
+    #print "$macro_key : @macro_values\n";
     $macro_hash{$macro_key} = [@macro_values];
 }
 
-#replace targets and prerequistes that have macro
-print "------replace targets and prerequistes that have macro--------\n";
+#replace macros in targets and prerequistes  
+#print "------replace macros in targets and prerequistes------\n";
+=pod
 foreach my $target (@prereq_target){
     my $target_replacement=$target;
-   if($target=~/\${([^}]+)\}/){
+    if($target=~/\${([^}]+)\}/){
      $target_replacement=@{$macro_hash{$1}}[0];
-   }
+    }
      my @prereq_list=@{$target_hash{$target}};
      #print "@prereq_list\n";
      @prereq_list=&macro_sub(\@prereq_list,\%macro_hash);
@@ -146,9 +149,36 @@ foreach my $target (@prereq_target){
      delete $target_hash{$target};
      @{$target_hash{$target_replacement}}= @prereq_list;
 }
+=cut
 
+foreach my $target (keys %target_hash){
+    #print "$target\n";
+    my $target_replacement=$target;
+    if($target=~/\${([^}]+)\}/){
+       $target_replacement=@{$macro_hash{$1}}[0];
+    }
 
-
+    if(($target_hash{$target}) ne ''){
+      #print "$target_hash{$target}\n"; 
+      my @prereq_list=@{$target_hash{$target}};
+      #print "$target : @prereq_list\n";
+      @prereq_list=&macro_sub(\@prereq_list,\%macro_hash);
+      #print "@prereq_list\n";
+      delete $target_hash{$target};
+      @{$target_hash{$target_replacement}}= @prereq_list;
+   }
+   if(exists ($command_hash{$target})){
+      if(($command_hash{$target}) ne ''){      
+         my @cmd_list = @{$command_hash{$target}};
+         #print "@cmd_list\n";
+         @cmd_list = &macro_sub(\@cmd_list,\%macro_hash);
+         delete $command_hash{$target};
+         @{$command_hash{$target_replacement}} = @cmd_list;
+      }
+   }
+}
+ 
+=pod
 print "-------------------\n";
 my $href3=\%macro_hash;
 print "-------------macro--------------\n";
@@ -156,11 +186,12 @@ say Dumper($href3);
 my $href=\%target_hash;
 print "-------------target prerequistes-------------\n";
 say Dumper($href);
-=pod
+=cut
+
 my $href2=\%command_hash;
 print "------------command-------------\n";
 say Dumper($href2);
-=cut
+
 close $file;
 
 
