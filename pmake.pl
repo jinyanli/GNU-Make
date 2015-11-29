@@ -212,22 +212,29 @@ my @ordered_targets;
 for my $target (@total_target){
   if (exists $target_hash{$target}){
       if($target_hash{$target} ne ""){
-         my @start_pre = @{$target_hash{$target}};
-         &get_pre(\@start_pre);
+         my @prereq = @{$target_hash{$target}};
+         #push prerequisites to @ordered_targets
+         &get_prerequisites(\@prereq);
      }
     push(@ordered_targets, $target);
   }
 }
-print "ordered_targets: @ordered_targets\n";
+#print "ordered_targets: @ordered_targets\n";
 
+#execute commands 
+print "------------execute commands-------------\n";
+foreach my $target (@ordered_targets){
+    if (exists $command_hash{$target}){
+    }
+}
 
-sub get_pre {
+sub get_prerequisites {
     my @pre_list = @{$_[0]};
     foreach my $tar (@pre_list){
         if (exists $target_hash{$tar}){
            if($target_hash{$tar} ne ""){
                my @pass_pre = @{$target_hash{$tar}};
-               &get_pre(\@pass_pre);
+               &get_prerequisites(\@pass_pre);
             }
                push(@ordered_targets, $tar);           
         }
@@ -243,9 +250,9 @@ my $href=\%target_hash;
 print "-------------target prerequistes-------------\n";
 say Dumper($href);
 
-#my $href2=\%command_hash;
-#print "------------command-------------\n";
-#say Dumper($href2);
+my $href2=\%command_hash;
+print "------------command-------------\n";
+say Dumper($href2);
 
 
 close $file;
