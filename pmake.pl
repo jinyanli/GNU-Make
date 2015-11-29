@@ -219,12 +219,18 @@ for my $target (@total_target){
     push(@ordered_targets, $target);
   }
 }
-#print "ordered_targets: @ordered_targets\n";
+
+print "ordered_targets: @ordered_targets\n";
 
 #execute commands 
 print "------------execute commands-------------\n";
 foreach my $target (@ordered_targets){
     if (exists $command_hash{$target}){
+       my @cmd_list=@{$command_hash{$target}};
+       my $text;
+       map {$_="" if $_ =~ /-/} @cmd_list;
+        print "$target : @cmd_list\n";
+ 
     }
 }
 
