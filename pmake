@@ -64,8 +64,8 @@ sub parse_line {
             $macro_hash_ref->{$1} = [@values];
         }
 
-         #put target as key and prerequisites as value in hash
-         if($line =~ /\s*(\S+)\s*:.*/ and $line !~ /\t\s*.+/) {            
+       #put target as key and prerequisites as value in hash
+      if($line =~ /\s*(\S+)\s*:.*/ and $line !~ /\t\s*.+/) {            
             my $target=$1;
             #print "$target : ";
             $current_target=$target;
@@ -139,7 +139,7 @@ sub percent_sub {
                         $prerequisites =~ s/^.//;
                         $prerequisites = $value . $prerequisites;
                         my @cmd_list = @{$command_hash{$key}};
-                        map {$_=$prerequisites if $_ =~ /\$</} @cmd_list;
+                    map {$_=$prerequisites if $_ =~ /\$</} @cmd_list;
                         $target_hash{$target} = [$prerequisites];
                         $command_hash{$target} = [@cmd_list];
                      }
@@ -249,7 +249,8 @@ foreach my $target (@ordered_targets){
         my $cmd_txt="";
         for my $cmd (@cmd_list){
             if($cmd ne "\n"){
-               $cmd_txt=$cmd_txt.$cmd." ";
+              $cmd=~s/\$\$/\$/;
+              $cmd_txt=$cmd_txt.$cmd." ";               
             }else{
                 print "$cmd_txt\n";
                 system($cmd_txt);
