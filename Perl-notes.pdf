@@ -1,0 +1,2046 @@
+%PDF-1.4
+5 0 obj
+<</Length 6 0 R>>
+stream
+q 0.1 0 0 0.1 0 0 cm
+/R7 gs
+0 G
+380 240 5360 7080 re
+S
+5 w
+0 0 0 RG
+380 7320 m
+5700 7320 l
+380 7320 m
+1100 7320 l
+1100 7680 l
+380 7680 l
+h
+S
+0 0 0 rg
+q
+10 0 0 10 0 0 cm BT
+/R8 12 Tf
+1 0 0 1 52.6641 752 Tm
+(01/06/12)Tj
+-0.659766 -12.8 Td
+(19:09:23)Tj
+ET
+Q
+4980 7320 720 360 re
+S
+q
+10 0 0 10 0 0 cm BT
+/R10 28.8 Tf
+1 0 0 1 513.484 739.2 Tm
+(1)Tj
+/R10 18 Tf
+16.0129 0 Td
+(/14)Tj
+/R12 14 Tf
+-253.881 -2.7 Td
+(Perl-notes)Tj
+-100.125 18 Td
+($cmps112-wm/Languages/perl/Perl-notes.dir/)Tj
+ET
+Q
+0 G
+0 g
+q
+10 0 0 10 0 0 cm BT
+/R14 11 Tf
+1 0 0 1 70.4 718 Tm
+(1:)Tj
+12 TL
+T*[(2:)-600($Id: Perl-notes,v 1.4 2012-01-06 19:09:23-08 - - $)]TJ
+(3:)'
+T*[(4:)-600(Source ideas: http://stuff.mit.edu/iap/perl/slides/slides.html)]TJ
+(5:)'
+T*[(6:)-600(Perl summary:)]TJ
+T*[(7:)-600(- glue of the internet)]TJ
+T*[(8:)-600(- high level language)]TJ
+T*[(9:)-600(- builtin dynamic arrays and hashes)]TJ
+-6.6 -12 Td
+[(10:)-600(- scripting language)]TJ
+T*[(11:)-600(- no compilation needed)]TJ
+T*[(12:)-600(- powerful for text processing)]TJ
+T*[(13:)-600(- Unix system interfaces builtin)]TJ
+T*[(14:)-600(- other languages similar: Python, Ruby)]TJ
+T*[(15:)-600(- created by Larry Wall)]TJ
+(16:)'
+T*[(17:)-600(Examples:)]TJ
+T*[(18:)-600(% perl -e 'print "hello world\\n"')]TJ
+(19:)'
+T*[(20:)-600(% cat hello.perl)]TJ
+T*[(21:)-600(#!/usr/bin/perl)]TJ
+T*[(22:)-600(print "Hello, world!\\n")]TJ
+(23:)'
+T*[(24:)-600(- remember to chmod +x all perl scripts)]TJ
+T*[(25:)-600(- the first line must be the hashbang)]TJ
+(26:)'
+T*[(27:)-600(Example sieve of Eratosthenes:)]TJ
+T*[(28:)-600(- INEFFICIENT:  runs in time O\(n^2\))]TJ
+(29:)'
+T*[(30:)-600($maximum = 1000;)]TJ
+T*[(31:)-600(@numbers = \(2..$maximum\);)]TJ
+T*[(32:)-600(while \($prime = shift @nubmers\) {)]TJ
+T*[(33:)-600(   print $prime\\n";)]TJ
+T*[(34:)-600(   @numbers = grep {$_ % $prime != 0} @numbers;)]TJ
+T*[(35:)-600(})]TJ
+(36:)'
+T*[(37:)-600(-----------------------------------------------------------------)]TJ
+ET
+Q
+Q
+endstream
+endobj
+6 0 obj
+1951
+endobj
+19 0 obj
+<</Length 20 0 R>>
+stream
+q 0.1 0 0 0.1 0 0 cm
+/R7 gs
+0 G
+380 240 5360 7080 re
+S
+5 w
+0 0 0 RG
+380 7320 m
+5700 7320 l
+380 7320 m
+1100 7320 l
+1100 7680 l
+380 7680 l
+h
+S
+0 0 0 rg
+q
+10 0 0 10 0 0 cm BT
+/R8 12 Tf
+1 0 0 1 52.6641 752 Tm
+(01/06/12)Tj
+-0.659766 -12.8 Td
+(19:09:23)Tj
+ET
+Q
+4980 7320 720 360 re
+S
+q
+10 0 0 10 0 0 cm BT
+/R10 28.8 Tf
+1 0 0 1 513.484 739.2 Tm
+(2)Tj
+/R10 18 Tf
+16.0129 0 Td
+(/14)Tj
+/R12 14 Tf
+-253.881 -2.7 Td
+(Perl-notes)Tj
+-100.125 18 Td
+($cmps112-wm/Languages/perl/Perl-notes.dir/)Tj
+ET
+Q
+0 G
+0 g
+q
+10 0 0 10 0 0 cm BT
+/R14 11 Tf
+1 0 0 1 63.8 718 Tm
+(38:)Tj
+12 TL
+(39:)'
+T*[(40:)-600(Running perl:)]TJ
+T*[(41:)-600(create a file foo.perl using any text editor.)]TJ
+T*[(42:)-600(Make sure the first line is a hashbang:)]TJ
+(43:)'
+T*[(44:)-600(#!/usr/bin/perl)]TJ
+(45:)'
+T*[(46:)-600(- no white space)]TJ
+T*[(47:)-600(chmod +x foo.perl)]TJ
+T*[(48:)-600(run it with:  foo.perl)]TJ
+T*[(49:)-600(- just give its name on the command line.)]TJ
+T*[(50:)-600(- some programs will not have a suffix)]TJ
+(51:)'
+T*[(52:)-600(If the program is non-trivial:)]TJ
+T*[(53:)-600(make sure to)]TJ
+(54:)'
+T*[(55:)-600(use strict;)]TJ
+T*[(56:)-600(- requires declaration of variables and checks on other things)]TJ
+T*[(57:)-600(use warnings;)]TJ
+T*[(58:)-600(- prints extra warnings, specially for uninitialized variabls.)]TJ
+(59:)'
+T*[(60:)-600(What is true?)]TJ
+T*[(61:)-600(- anything that is not false.)]TJ
+T*[(62:)-600(What is false?)]TJ
+T*[(63:)-600(- undef, 0, "")]TJ
+(64:)'
+T*[(65:)-600(# Comments start with a # character)]TJ
+(66:)'
+T*[(67:)-600(Data types:)]TJ
+T*[(68:)-600(scalars - singe values: strings, numbers, references.)]TJ
+T*[(69:)-600(        - types are dynamic and can change over time)]TJ
+T*[(70:)-600(arrays  - multiple values indexed by integers starting from 0)]TJ
+T*[(71:)-600(        - @a in scalar context is like a.length in Java.)]TJ
+T*[(72:)-600(        - $a[$i] is an index element)]TJ
+T*[(73:)-600(hashes  - %h is a hash, $h{$k} is an element of a hash)]TJ
+T*[(74:)-600(        - built into perl, so symbol table applications are easy)]TJ
+T*[(75:)-600(data structures - created by scalars, arrays, hashes of references)]TJ
+(76:)'
+T*[(77:)-600(-----------------------------------------------------------------)]TJ
+ET
+Q
+Q
+endstream
+endobj
+20 0 obj
+2230
+endobj
+24 0 obj
+<</Length 25 0 R>>
+stream
+q 0.1 0 0 0.1 0 0 cm
+/R7 gs
+0 G
+380 240 5360 7080 re
+S
+5 w
+0 0 0 RG
+380 7320 m
+5700 7320 l
+380 7320 m
+1100 7320 l
+1100 7680 l
+380 7680 l
+h
+S
+0 0 0 rg
+q
+10 0 0 10 0 0 cm BT
+/R8 12 Tf
+1 0 0 1 52.6641 752 Tm
+(01/06/12)Tj
+-0.659766 -12.8 Td
+(19:09:23)Tj
+ET
+Q
+4980 7320 720 360 re
+S
+q
+10 0 0 10 0 0 cm BT
+/R10 28.8 Tf
+1 0 0 1 513.484 739.2 Tm
+(3)Tj
+/R10 18 Tf
+16.0129 0 Td
+(/14)Tj
+/R12 14 Tf
+-253.881 -2.7 Td
+(Perl-notes)Tj
+-100.125 18 Td
+($cmps112-wm/Languages/perl/Perl-notes.dir/)Tj
+ET
+Q
+0 G
+0 g
+q
+10 0 0 10 0 0 cm BT
+/R14 11 Tf
+1 0 0 1 63.8 718 Tm
+(78:)Tj
+12 TL
+(79:)'
+T*[(80:)-600(Sigils: $, @, %)]TJ
+T*[(81:)-600(Identifiers are case-sensitive)]TJ
+T*[(82:)-600(Also special names:  $0, @ARGV, $_, $!, $., $&)]TJ
+(83:)'
+T*[(84:)-600(Scalars:)]TJ
+T*[(85:)-600(   $sigil)]TJ
+T*[(86:)-600(   - may contain numbers \(integer or double\))]TJ
+T*[(87:)-600(   - strings)]TJ
+T*[(88:)-600(   - references)]TJ
+(89:)'
+T*[(90:)-600(Strings:)]TJ
+T*[(91:)-600(   - bounded by 'abc', "abc", or `abc`)]TJ
+T*[(92:)-600(   - '$abc\\n' is the literal strings itself)]TJ
+T*[(93:)-600(   - "$abc\\n" is the value of the variable $abc followed by nl char)]TJ
+T*[(94:)-600(   - `time` is the output of running the command time by the shell)]TJ
+(95:)'
+T*[(96:)-600(Local variables declared by my:)]TJ
+T*[(97:)-600(   sub foo \(\) {)]TJ
+T*[(98:)-600(      my $a = 6; # lexically scoped as in Java)]TJ
+T*[(99:)-600(   })]TJ
+-6.6 -12 Td
+(100:)Tj
+T*[(101:)-600($a = 6; $a = "abc"; ... type may change over time)]TJ
+(102:)'
+T*[(103:)-600(-----------------------------------------------------------------)]TJ
+ET
+Q
+Q
+endstream
+endobj
+25 0 obj
+1586
+endobj
+29 0 obj
+<</Length 30 0 R>>
+stream
+q 0.1 0 0 0.1 0 0 cm
+/R7 gs
+0 G
+380 240 5360 7080 re
+S
+5 w
+0 0 0 RG
+380 7320 m
+5700 7320 l
+380 7320 m
+1100 7320 l
+1100 7680 l
+380 7680 l
+h
+S
+0 0 0 rg
+q
+10 0 0 10 0 0 cm BT
+/R8 12 Tf
+1 0 0 1 52.6641 752 Tm
+(01/06/12)Tj
+-0.659766 -12.8 Td
+(19:09:23)Tj
+ET
+Q
+4980 7320 720 360 re
+S
+q
+10 0 0 10 0 0 cm BT
+/R10 28.8 Tf
+1 0 0 1 513.484 739.2 Tm
+(4)Tj
+/R10 18 Tf
+16.0129 0 Td
+(/14)Tj
+/R12 14 Tf
+-253.881 -2.7 Td
+(Perl-notes)Tj
+-100.125 18 Td
+($cmps112-wm/Languages/perl/Perl-notes.dir/)Tj
+ET
+Q
+0 G
+0 g
+q
+10 0 0 10 0 0 cm BT
+/R14 11 Tf
+1 0 0 1 57.2 718 Tm
+(104:)Tj
+12 TL
+(105:)'
+T*[(106:)-600(ARRAYS:)]TJ
+T*[(107:)-600(   @a for a whole array)]TJ
+T*[(108:)-600(   $a[$i] for an element of an array)]TJ
+T*[(109:)-600(   size may change over time)]TJ
+T*[(110:)-600(   @a[$i..$j] is a slice of an array)]TJ
+T*[(111:)-600(   $a[-1] is the last element , $a[-2] second last)]TJ
+T*[(112:)-600(   $a[0] is the first element)]TJ
+(113:)'
+T*[(114:)-600(for \(my $i = 0; $i < @a: ++$i\) { ... })]TJ
+T*[(115:)-600(- when @a in scalar context, like Java a.length)]TJ
+T*[(116:)-600(for my $i \(@a\) { ... })]TJ
+T*[(117:)-600(- like Java for \(i: a\) {...})]TJ
+(118:)'
+T*[(119:)-600(@a = @b is whole array assignment \(copying\), not reference assignment)]TJ
+(120:)'
+T*[(121:)-600($x = pop @a; removes last element assigns to $x)]TJ
+T*[(122:)-600(push @a, $x; appends $x to end of array)]TJ
+T*[(123:)-600(- stack is trivial)]TJ
+(124:)'
+T*[(125:)-600($x = shift @a; removes 0 element assigns to $x)]TJ
+T*[(126:)-600(unshift @a, $x; inserts new front element and shoves down the rest)]TJ
+T*[(127:)-600(- queue is push and shift)]TJ
+(128:)'
+T*[(129:)-600(Also has a splice operation)]TJ
+(130:)'
+T*[(131:)-600(With subscript, sigil changes to $ if a scalar is produced:)]TJ
+T*[(132:)-600($a[$i] is a scalar, @a[1,10,20] is an array with element selected)]TJ
+T*[(133:)-600($#a is usually @a - 1;)]TJ
+(134:)'
+T*[(135:)-600(@a = \(1, 3, 5, 7, 9\); - initializes an array)]TJ
+T*[(136:)-600(@a = \(1..10, 101..110\); - array has 20 elements in it)]TJ
+(137:)'
+T*[(138:)-600($a[10000] if no element returns undef)]TJ
+(139:)'
+T*[(140:)-600(-----------------------------------------------------------------)]TJ
+ET
+Q
+Q
+endstream
+endobj
+30 0 obj
+2181
+endobj
+34 0 obj
+<</Length 35 0 R>>
+stream
+q 0.1 0 0 0.1 0 0 cm
+/R7 gs
+0 G
+380 240 5360 7080 re
+S
+5 w
+0 0 0 RG
+380 7320 m
+5700 7320 l
+380 7320 m
+1100 7320 l
+1100 7680 l
+380 7680 l
+h
+S
+0 0 0 rg
+q
+10 0 0 10 0 0 cm BT
+/R8 12 Tf
+1 0 0 1 52.6641 752 Tm
+(01/06/12)Tj
+-0.659766 -12.8 Td
+(19:09:23)Tj
+ET
+Q
+4980 7320 720 360 re
+S
+q
+10 0 0 10 0 0 cm BT
+/R10 28.8 Tf
+1 0 0 1 513.484 739.2 Tm
+(5)Tj
+/R10 18 Tf
+16.0129 0 Td
+(/14)Tj
+/R12 14 Tf
+-253.881 -2.7 Td
+(Perl-notes)Tj
+-100.125 18 Td
+($cmps112-wm/Languages/perl/Perl-notes.dir/)Tj
+ET
+Q
+0 G
+0 g
+q
+10 0 0 10 0 0 cm BT
+/R14 11 Tf
+1 0 0 1 57.2 718 Tm
+(141:)Tj
+12 TL
+(142:)'
+T*[(143:)-600(HASHES:)]TJ
+T*[(144:)-600(   store any number of key/value pairs)]TJ
+T*[(145:)-600(   %sigil for hash)]TJ
+T*[(146:)-600(   $h{$k} for an element)]TJ
+T*[(147:)-600(   @h{$k,$j} for an array of selected values)]TJ
+T*[(148:)-600(   @h{@a} returns an array of values indexed by elements @a)]TJ
+(149:)'
+T*[(150:)-600(%h = \("foo"=> 3, "bar"=> 5\);)]TJ
+T*[(151:)-600(- initialized by an array with alternating key=>value pairs.)]TJ
+T*[(152:)-600(for my $key \(sort keys %h\) { ... $h{$key}... })]TJ
+(153:)'
+T*[(154:)-600($h{$k} returns undef if not found)]TJ
+T*[(155:)-600(- undef is sort of like null in Java)]TJ
+(156:)'
+T*[(157:)-600(delete $h{$k}; removes a key/value pair)]TJ
+(158:)'
+T*[(159:)-600(CONTEXT:)]TJ
+T*[(160:)-600(- no difference between '1', "1", and 1)]TJ
+T*[(161:)-600(- auto stringifies numbers when needed, auto numifies strings)]TJ
+T*[(162:)-600(- context determines value)]TJ
+T*[(163:)-600(- context may be scalar or list.)]TJ
+T*[(164:)-600(- list==array, so linked lists are never needed in Perl)]TJ
+T*[(165:)-600(- $a = "33foo" + 6; sets $a to 39)]TJ
+(166:)'
+T*[(167:)-600(String context:)]TJ
+T*[(168:)-600(- dot \(.\) is concatenation)]TJ
+T*[(169:)-600(- $a = 33 . 44; concatenation => 3344)]TJ
+T*[(170:)-600(- "" interpolates \\escapes, $i and @a values)]TJ
+T*[(171:)-600(- @a = \(1,2,3\); $s="@a"; $s = '1 2 3';)]TJ
+(172:)'
+T*[(173:)-600(Boolean context:)]TJ
+T*[(174:)-600(- undef, 0, "" are false; everything else is true)]TJ
+(175:)'
+T*[(176:)-600(-----------------------------------------------------------------)]TJ
+ET
+Q
+Q
+endstream
+endobj
+35 0 obj
+2131
+endobj
+39 0 obj
+<</Length 40 0 R>>
+stream
+q 0.1 0 0 0.1 0 0 cm
+/R7 gs
+0 G
+380 240 5360 7080 re
+S
+5 w
+0 0 0 RG
+380 7320 m
+5700 7320 l
+380 7320 m
+1100 7320 l
+1100 7680 l
+380 7680 l
+h
+S
+0 0 0 rg
+q
+10 0 0 10 0 0 cm BT
+/R8 12 Tf
+1 0 0 1 52.6641 752 Tm
+(01/06/12)Tj
+-0.659766 -12.8 Td
+(19:09:23)Tj
+ET
+Q
+4980 7320 720 360 re
+S
+q
+10 0 0 10 0 0 cm BT
+/R10 28.8 Tf
+1 0 0 1 513.484 739.2 Tm
+(6)Tj
+/R10 18 Tf
+16.0129 0 Td
+(/14)Tj
+/R12 14 Tf
+-253.881 -2.7 Td
+(Perl-notes)Tj
+-100.125 18 Td
+($cmps112-wm/Languages/perl/Perl-notes.dir/)Tj
+ET
+Q
+0 G
+0 g
+q
+10 0 0 10 0 0 cm BT
+/R14 11 Tf
+1 0 0 1 57.2 718 Tm
+(177:)Tj
+12 TL
+(178:)'
+T*[(179:)-600(OPERATOS:)]TJ
+T*[(180:)-600(   numeric, string, quoting, boolean, list)]TJ
+(181:)'
+T*[(182:)-600(man perlop:)]TJ
+T*[(183:)-600(           left        terms and list operators \(leftward\))]TJ
+T*[(184:)-600(           left        ->)]TJ
+T*[(185:)-600(           nonassoc    ++ --)]TJ
+T*[(186:)-600(           right       **)]TJ
+T*[(187:)-600(           right       ! ~ \\ and unary + and -)]TJ
+T*[(188:)-600(           left        =~ !~)]TJ
+T*[(189:)-600(           left        * / % x)]TJ
+T*[(190:)-600(           left        + - .)]TJ
+T*[(191:)-600(           left        << >>)]TJ
+T*[(192:)-600(           nonassoc    named unary operators)]TJ
+T*[(193:)-600(           nonassoc    < > <= >= lt gt le ge)]TJ
+T*[(194:)-600(           nonassoc    == != <=> eq ne cmp)]TJ
+T*[(195:)-600(           left        &)]TJ
+T*[(196:)-600(           left        | ^)]TJ
+T*[(197:)-600(           left        &&)]TJ
+T*[(198:)-600(           left        ||)]TJ
+T*[(199:)-600(           nonassoc    ..  ...)]TJ
+T*[(200:)-600(           right       ?:)]TJ
+T*[(201:)-600(           right       = += -= *= etc.)]TJ
+T*[(202:)-600(           left        , =>)]TJ
+T*[(203:)-600(           nonassoc    list operators \(rightward\))]TJ
+T*[(204:)-600(           right       not)]TJ
+T*[(205:)-600(           left        and)]TJ
+T*[(206:)-600(           left        or xor)]TJ
+(207:)'
+T*[(208:)-600(. concatenation)]TJ
+T*[(209:)-600(x repeititon:  $x = "-" x 10 means $x = "----------")]TJ
+T*[(210:)-600(== != < <= > >= numeric operators)]TJ
+T*[(211:)-600(eq ne lt le gt ge string operators like \(strcmp\))]TJ
+T*[(212:)-600(cmp is string.compareTo)]TJ
+T*[(213:)-600(<=> is numeric.compareTo)]TJ
+T*[(214:)-600(So:  19 > 9, but "19" lt 9)]TJ
+(215:)'
+T*[(216:)-600(-----------------------------------------------------------------)]TJ
+ET
+Q
+Q
+endstream
+endobj
+40 0 obj
+2397
+endobj
+44 0 obj
+<</Length 45 0 R>>
+stream
+q 0.1 0 0 0.1 0 0 cm
+/R7 gs
+0 G
+380 240 5360 7080 re
+S
+5 w
+0 0 0 RG
+380 7320 m
+5700 7320 l
+380 7320 m
+1100 7320 l
+1100 7680 l
+380 7680 l
+h
+S
+0 0 0 rg
+q
+10 0 0 10 0 0 cm BT
+/R8 12 Tf
+1 0 0 1 52.6641 752 Tm
+(01/06/12)Tj
+-0.659766 -12.8 Td
+(19:09:23)Tj
+ET
+Q
+4980 7320 720 360 re
+S
+q
+10 0 0 10 0 0 cm BT
+/R10 28.8 Tf
+1 0 0 1 513.484 739.2 Tm
+(7)Tj
+/R10 18 Tf
+16.0129 0 Td
+(/14)Tj
+/R12 14 Tf
+-253.881 -2.7 Td
+(Perl-notes)Tj
+-100.125 18 Td
+($cmps112-wm/Languages/perl/Perl-notes.dir/)Tj
+ET
+Q
+0 G
+0 g
+q
+10 0 0 10 0 0 cm BT
+/R14 11 Tf
+1 0 0 1 57.2 718 Tm
+(217:)Tj
+12 TL
+(218:)'
+T*[(219:)-600(Quoting operators)]TJ
+T*[(220:)-600("" causes interpolation of $x scalars, @a arrays, \\n, etc. escapes)]TJ
+T*[(221:)-600('' are for literal strings only, no interp)]TJ
+T*[(222:)-600(`` interpolates passes string to shell and captures results.)]TJ
+T*[(223:)-600($i = 6 @a = \(1,2,3\);)]TJ
+T*[(224:)-600($s = '$i @a\\n'; literal string)]TJ
+T*[(225:)-600($s = "$i @a\\n"; string is '6 1 2 3' followed by nl char)]TJ
+T*[(226:)-600($s = `ls`; $s has all files in current dir.)]TJ
+(227:)'
+T*[(228:)-600(List operators)]TJ
+T*[(229:)-600(push, pop, shift, unshift - see above)]TJ
+T*[(230:)-600(sort @a - sorts array lexicographically)]TJ
+T*[(231:)-600(sort {$a <=> $b} @a - sorts array numerically)]TJ
+T*[(232:)-600(- can use any block as first argument to sort)]TJ
+T*[(233:)-600(reverse @a - reverses the list)]TJ
+T*[(234:)-600(split /,/, $s - splits a string into an array with , as delim)]TJ
+T*[(235:)-600(join "," @a - makes a string from elements of array with , interpolated)]TJ
+T*[(236:)-600(grep {boolexpr} @a - returns a subarray for which boolexpr is true)]TJ
+T*[(237:)-600(   $_ special variable "it".)]TJ
+T*[(238:)-600(@b = grep {$_ > 0} @a; sets @b to all positive elements of @a)]TJ
+(239:)'
+T*[(240:)-600(map {expr} @a - maps each expr onto elements of araray)]TJ
+T*[(241:)-600(@b = map {$_ * 2} @a; sets b - double of @a elements)]TJ
+T*[(242:)-600(map {$set{$_} = 1} @array - creates a hash with keys from the array)]TJ
+T*[(243:)-600(- all values are 1.  )]TJ
+(244:)'
+T*[(245:)-600(-----------------------------------------------------------------)]TJ
+ET
+Q
+Q
+endstream
+endobj
+45 0 obj
+2151
+endobj
+49 0 obj
+<</Length 50 0 R>>
+stream
+q 0.1 0 0 0.1 0 0 cm
+/R7 gs
+0 G
+380 240 5360 7080 re
+S
+5 w
+0 0 0 RG
+380 7320 m
+5700 7320 l
+380 7320 m
+1100 7320 l
+1100 7680 l
+380 7680 l
+h
+S
+0 0 0 rg
+q
+10 0 0 10 0 0 cm BT
+/R8 12 Tf
+1 0 0 1 52.6641 752 Tm
+(01/06/12)Tj
+-0.659766 -12.8 Td
+(19:09:23)Tj
+ET
+Q
+4980 7320 720 360 re
+S
+q
+10 0 0 10 0 0 cm BT
+/R10 28.8 Tf
+1 0 0 1 513.484 739.2 Tm
+(8)Tj
+/R10 18 Tf
+16.0129 0 Td
+(/14)Tj
+/R12 14 Tf
+-253.881 -2.7 Td
+(Perl-notes)Tj
+-100.125 18 Td
+($cmps112-wm/Languages/perl/Perl-notes.dir/)Tj
+ET
+Q
+0 G
+0 g
+q
+10 0 0 10 0 0 cm BT
+/R14 11 Tf
+1 0 0 1 57.2 718 Tm
+(246:)Tj
+12 TL
+(247:)'
+T*[(248:)-600(Flow of control:)]TJ
+T*[(249:)-600(if \(expr\) {stmts...})]TJ
+T*[(250:)-600(unless \(expr\) {stmts...})]TJ
+T*[(251:)-600(if \(expr\) {stmts...} elsif \(e\) {stmts...} elsif \(e\) {stmts...} else{s})]TJ
+T*[(252:)-600(- the {} on statements are required.)]TJ
+T*[(253:)-600($a = "foo" if expr;)]TJ
+T*[(254:)-600(- can use if or unless as a suffix.)]TJ
+(255:)'
+T*[(256:)-600(while\(e\){stmt...})]TJ
+T*[(257:)-600(simple while e;)]TJ
+T*[(258:)-600(for \(init; test; step\) {stmt...})]TJ
+T*[(259:)-600(for var \(list\) {stmt...})]TJ
+T*[(260:)-600(simple for $a;)]TJ
+T*[(261:)-600(print "$_\\n" for 1..10; - prints out numbers 1..10;)]TJ
+T*[(262:)-600(for===foreach)]TJ
+T*[(263:)-600(&& || !? and or - all short circuit operators.)]TJ
+(264:)'
+T*[(265:)-600(do {stmt} until expr;)]TJ
+T*[(266:)-600(do {stmt} while expr;)]TJ
+(267:)'
+T*[(268:)-600(next - like continue)]TJ
+T*[(269:)-600(last - like break)]TJ
+(270:)'
+T*[(271:)-600(-----------------------------------------------------------------)]TJ
+ET
+Q
+Q
+endstream
+endobj
+50 0 obj
+1582
+endobj
+54 0 obj
+<</Length 55 0 R>>
+stream
+q 0.1 0 0 0.1 0 0 cm
+/R7 gs
+0 G
+380 240 5360 7080 re
+S
+5 w
+0 0 0 RG
+380 7320 m
+5700 7320 l
+380 7320 m
+1100 7320 l
+1100 7680 l
+380 7680 l
+h
+S
+0 0 0 rg
+q
+10 0 0 10 0 0 cm BT
+/R8 12 Tf
+1 0 0 1 52.6641 752 Tm
+(01/06/12)Tj
+-0.659766 -12.8 Td
+(19:09:23)Tj
+ET
+Q
+4980 7320 720 360 re
+S
+q
+10 0 0 10 0 0 cm BT
+/R10 28.8 Tf
+1 0 0 1 513.484 739.2 Tm
+(9)Tj
+/R10 18 Tf
+16.0129 0 Td
+(/14)Tj
+/R12 14 Tf
+-253.881 -2.7 Td
+(Perl-notes)Tj
+-100.125 18 Td
+($cmps112-wm/Languages/perl/Perl-notes.dir/)Tj
+ET
+Q
+0 G
+0 g
+q
+10 0 0 10 0 0 cm BT
+/R14 11 Tf
+1 0 0 1 57.2 718 Tm
+(272:)Tj
+12 TL
+(273:)'
+T*[(274:)-600(Subroutines)]TJ
+T*[(275:)-600(sub add {)]TJ
+T*[(276:)-600(   my \($a, $b\) = @_;)]TJ
+T*[(277:)-600(   return $a + $b;)]TJ
+T*[(278:)-600(})]TJ
+T*[(279:)-600(- value of sub is value of last statement or return value)]TJ
+T*[(280:)-600(- @_ is array of arguments)]TJ
+(281:)'
+T*[(282:)-600($a = add \(3, 4\);)]TJ
+T*[(283:)-600($a = add 3, 4;)]TJ
+T*[(284:)-600(parents are not always necessary)]TJ
+(285:)'
+T*[(286:)-600(sub update {)]TJ
+T*[(287:)-600(   my \($a\) = @_;)]TJ
+T*[(288:)-600(   $$a = $$a + 1; # like C: *a = *a + 1)]TJ
+T*[(289:)-600(})]TJ
+T*[(290:)-600(update \(\\$a\); like C update \(&a\);)]TJ
+(291:)'
+T*[(292:)-600(my $a = @a instead would set $a to the length of @_)]TJ
+T*[(293:)-600(- parens needed here)]TJ
+(294:)'
+T*[(295:)-600(-----------------------------------------------------------------)]TJ
+ET
+Q
+Q
+endstream
+endobj
+55 0 obj
+1403
+endobj
+59 0 obj
+<</Length 60 0 R>>
+stream
+q 0.1 0 0 0.1 0 0 cm
+/R7 gs
+0 G
+380 240 5360 7080 re
+S
+5 w
+0 0 0 RG
+380 7320 m
+5700 7320 l
+380 7320 m
+1100 7320 l
+1100 7680 l
+380 7680 l
+h
+S
+0 0 0 rg
+q
+10 0 0 10 0 0 cm BT
+/R8 12 Tf
+1 0 0 1 52.6641 752 Tm
+(01/06/12)Tj
+-0.659766 -12.8 Td
+(19:09:23)Tj
+ET
+Q
+4980 7320 720 360 re
+S
+q
+10 0 0 10 0 0 cm BT
+/R10 28.8 Tf
+1 0 0 1 505.478 739.2 Tm
+(10)Tj
+/R10 18 Tf
+32.0258 0 Td
+(/14)Tj
+/R12 14 Tf
+-261.887 -2.7 Td
+(Perl-notes)Tj
+-100.125 18 Td
+($cmps112-wm/Languages/perl/Perl-notes.dir/)Tj
+ET
+Q
+0 G
+0 g
+q
+10 0 0 10 0 0 cm BT
+/R14 11 Tf
+1 0 0 1 57.2 718 Tm
+(296:)Tj
+12 TL
+(297:)'
+T*[(298:)-600(References:)]TJ
+T*[(299:)-600(used to make compilicated data strutores.)]TJ
+T*[(300:)-600(Example trees:)]TJ
+(301:)'
+T*[(302:)-600($t = {LEAF=> 'a'};)]TJ
+T*[(303:)-600(- hash refernce)]TJ
+T*[(304:)-600($u = {LEAF=> 'b'\);)]TJ
+T*[(305:)-600($v = {OPER=> '+', LEFT=>$t, RIGHT=>$u};)]TJ
+T*[(306:)-600({} makes a hash ref, [] makes an array ref.)]TJ
+T*[(307:)-600($p = \\@a; makes $p point at an array)]TJ
+T*[(308:)-600($p->[$i] dereferences that element.)]TJ
+T*[(309:)-600($q = \\%h; address of a hash)]TJ
+T*[(310:)-600($q->{$k} selects from the hash)]TJ
+T*[(311:)-600(No structs, so use hash references instead.)]TJ
+(312:)'
+T*[(313:)-600($pa = [1, 2, 3]; reference to an array)]TJ
+T*[(314:)-600($ph = {3, 4, 5, 6}; reference to a hash)]TJ
+T*[(315:)-600(A reference is always a scalar)]TJ
+(316:)'
+T*[(317:)-600(-----------------------------------------------------------------)]TJ
+ET
+Q
+Q
+endstream
+endobj
+60 0 obj
+1470
+endobj
+64 0 obj
+<</Length 65 0 R>>
+stream
+q 0.1 0 0 0.1 0 0 cm
+/R7 gs
+0 G
+380 240 5360 7080 re
+S
+5 w
+0 0 0 RG
+380 7320 m
+5700 7320 l
+380 7320 m
+1100 7320 l
+1100 7680 l
+380 7680 l
+h
+S
+0 0 0 rg
+q
+10 0 0 10 0 0 cm BT
+/R8 12 Tf
+1 0 0 1 52.6641 752 Tm
+(01/06/12)Tj
+-0.659766 -12.8 Td
+(19:09:23)Tj
+ET
+Q
+4980 7320 720 360 re
+S
+q
+10 0 0 10 0 0 cm BT
+/R10 28.8 Tf
+1 0 0 1 505.478 739.2 Tm
+(11)Tj
+/R10 18 Tf
+32.0258 0 Td
+(/14)Tj
+/R12 14 Tf
+-261.887 -2.7 Td
+(Perl-notes)Tj
+-100.125 18 Td
+($cmps112-wm/Languages/perl/Perl-notes.dir/)Tj
+ET
+Q
+0 G
+0 g
+q
+10 0 0 10 0 0 cm BT
+/R14 11 Tf
+1 0 0 1 57.2 718 Tm
+(318:)Tj
+12 TL
+(319:)'
+T*[(320:)-600(FILES:)]TJ
+(321:)'
+T*[(322:)-600(Access to files uses open and close)]TJ
+T*[(323:)-600(open my $file, "<$filename" or warn "$0: $filename: $!\\n" and next;)]TJ
+T*[(324:)-600(- opens the file for reading and autovivifies the variable $file)]TJ
+T*[(325:)-600(- $! is like strerror\(errno\))]TJ
+(326:)'
+T*[(327:)-600(open my $file, ">$filename" opens it for output)]TJ
+T*[(328:)-600(close $file closes the file.)]TJ
+(329:)'
+T*[(330:)-600(Standard files: STDIN, STDOUT, STDERR)]TJ
+T*[(331:)-600(print $a, "\\n" -- uses STDOUT)]TJ
+T*[(332:)-600(print STDERR "whatever"; is like fprintf \(NOTE: no comma)]TJ
+T*[(333:)-600(print $file "foo"; prints ot $file \(no comma\))]TJ
+(334:)'
+T*[(335:)-600($a = <$file> reads a line from $file;)]TJ
+T*[(336:)-600(- undef at EOF)]TJ
+(337:)'
+T*[(338:)-600(while \($line = <>\) {......})]TJ
+T*[(339:)-600(reads lines from all of the files specifiedin @ARGV if any,)]TJ
+T*[(340:)-600(or STDIN if not.)]TJ
+(341:)'
+T*[(342:)-600(while \(<>\) {print})]TJ
+(343:)'
+T*[(344:)-600(same as)]TJ
+T*[(345:)-600(for my $filename \(@ARGV\) {)]TJ
+T*[(346:)-600(   open my $file, "<$filename" or warn "$0: $filename: $!\\n" and next;)]TJ
+T*[(347:)-600(   while \(defined \(my $line = <$file>\)\) {)]TJ
+T*[(348:)-600(      chomp $line;)]TJ
+T*[(349:)-600(      print $line, "\\n";)]TJ
+T*[(350:)-600(   })]TJ
+T*[(351:)-600(   close $file;)]TJ
+T*[(352:)-600(})]TJ
+(353:)'
+T*[(354:)-600(-----------------------------------------------------------------)]TJ
+ET
+Q
+Q
+endstream
+endobj
+65 0 obj
+2058
+endobj
+69 0 obj
+<</Length 70 0 R>>
+stream
+q 0.1 0 0 0.1 0 0 cm
+/R7 gs
+0 G
+380 240 5360 7080 re
+S
+5 w
+0 0 0 RG
+380 7320 m
+5700 7320 l
+380 7320 m
+1100 7320 l
+1100 7680 l
+380 7680 l
+h
+S
+0 0 0 rg
+q
+10 0 0 10 0 0 cm BT
+/R8 12 Tf
+1 0 0 1 52.6641 752 Tm
+(01/06/12)Tj
+-0.659766 -12.8 Td
+(19:09:23)Tj
+ET
+Q
+4980 7320 720 360 re
+S
+q
+10 0 0 10 0 0 cm BT
+/R10 28.8 Tf
+1 0 0 1 505.478 739.2 Tm
+(12)Tj
+/R10 18 Tf
+32.0258 0 Td
+(/14)Tj
+/R12 14 Tf
+-261.887 -2.7 Td
+(Perl-notes)Tj
+-100.125 18 Td
+($cmps112-wm/Languages/perl/Perl-notes.dir/)Tj
+ET
+Q
+0 G
+0 g
+q
+10 0 0 10 0 0 cm BT
+/R14 11 Tf
+1 0 0 1 57.2 718 Tm
+(355:)Tj
+12 TL
+(356:)'
+T*[(357:)-600(PIPES:)]TJ
+T*[(358:)-600(open my $lsla, "ls -la |" or die "$0: ls -la: $!\\n";)]TJ
+T*[(359:)-600(-- opens a pipe output from the ls -la commend.)]TJ
+(360:)'
+T*[(361:)-600(open my $fmt, "| fmt" or die "$0: fmt: $!\\n";)]TJ
+T*[(362:)-600(-- prepares FH $fmt for writing to the fmt command.)]TJ
+(363:)'
+T*[(364:)-600($a = `ls`; implicit pipe, stdout captured in a string)]TJ
+T*[(365:)-600(@a = `ls`; implicit pipe, each stdout line in a separate element.)]TJ
+(366:)'
+T*[(367:)-600(File check:)]TJ
+T*[(368:)-600(if \(-f $filename\) - check if f is a plain file)]TJ
+T*[(369:)-600(if \(-d $dir\) - checks for dir.)]TJ
+T*[(370:)-600(-- see more tests in man perlop \(perlfunc?\))]TJ
+(371:)'
+T*[(372:)-600(-----------------------------------------------------------------)]TJ
+ET
+Q
+Q
+endstream
+endobj
+70 0 obj
+1360
+endobj
+74 0 obj
+<</Length 75 0 R>>
+stream
+q 0.1 0 0 0.1 0 0 cm
+/R7 gs
+0 G
+380 240 5360 7080 re
+S
+5 w
+0 0 0 RG
+380 7320 m
+5700 7320 l
+380 7320 m
+1100 7320 l
+1100 7680 l
+380 7680 l
+h
+S
+0 0 0 rg
+q
+10 0 0 10 0 0 cm BT
+/R8 12 Tf
+1 0 0 1 52.6641 752 Tm
+(01/06/12)Tj
+-0.659766 -12.8 Td
+(19:09:23)Tj
+ET
+Q
+4980 7320 720 360 re
+S
+q
+10 0 0 10 0 0 cm BT
+/R10 28.8 Tf
+1 0 0 1 505.478 739.2 Tm
+(13)Tj
+/R10 18 Tf
+32.0258 0 Td
+(/14)Tj
+/R12 14 Tf
+-261.887 -2.7 Td
+(Perl-notes)Tj
+-100.125 18 Td
+($cmps112-wm/Languages/perl/Perl-notes.dir/)Tj
+ET
+Q
+0 G
+0 g
+q
+10 0 0 10 0 0 cm BT
+/R14 11 Tf
+1 0 0 1 57.2 718 Tm
+(373:)Tj
+12 TL
+(374:)'
+T*[(375:)-600(Regular expressions)]TJ
+T*[(376:)-600(Pattern matching based on Chompsky's type 3 languages.)]TJ
+(377:)'
+T*[(378:)-600(If \($a =~ m/foo/\) - if $a contains the string foo)]TJ
+T*[(379:)-600(if \($a !~ m/foo/\) - if $a does NOT match foo)]TJ
+T*[(380:)-600($a =~ s/foo/bar/ - change the first occurrence of foo to bar)]TJ
+T*[(381:)-600($a =~ s/foo/bar/g - change all occurrences of foo to bar)]TJ
+(382:)'
+T*[(383:)-600($0 =~ s|.*/||; delete all chars before the last /)]TJ
+T*[(384:)-600(    . match any character)]TJ
+T*[(385:)-600(    * zero or more)]TJ
+T*[(386:)-600(    ||| substituted delimiter chars)]TJ
+T*[(387:)-600(    delim char may not appear in pattern)]TJ
+T*[(388:)-600($0 =~ s/.*\\///; - same as above)]TJ
+(389:)'
+T*[(390:)-600(Regexes have chars and metachars.  \\ swaps the category.)]TJ
+T*[(391:)-600(\\d digits [0-9], \\D non-digits [^0-9])]TJ
+T*[(392:)-600(\\w word chars [a-zA-Z0-9_], \\W non-word chars)]TJ
+T*[(393:)-600(\\s white space [ \\t\\n], \\S non-whitespace)]TJ
+T*[(394:)-600(.  any char same as [^\\n])]TJ
+T*[(395:)-600(x*  zero or more x, greedy)]TJ
+T*[(396:)-600(x+  one or more x, greedy)]TJ
+T*[(397:)-600(x?  optional x, same as \(x|\))]TJ
+T*[(398:)-600(x*? zero or more x, non-greedy)]TJ
+T*[(399:)-600(x+? one or more x, non-greedy)]TJ
+T*[(400:)-600(x|y indicates alternation)]TJ
+T*[(401:)-600([xyz] means \(x|y|z\))]TJ
+T*[(402:)-600([a-z] a or z or anything in between \(lexicographic order\))]TJ
+T*[(403:)-600([^abc] any character not a or b or c)]TJ
+T*[(404:)-600(^ beginning of string)]TJ
+T*[(405:)-600($ end of string)]TJ
+T*[(406:)-600(x{3,10} 3 to 10 x)]TJ
+T*[(407:)-600(x{4} exactly 4 x)]TJ
+T*[(408:)-600(\\*, \\+, \\? matches the character itself)]TJ
+(409:)'
+T*[(410:)-600(-----------------------------------------------------------------)]TJ
+ET
+Q
+Q
+endstream
+endobj
+75 0 obj
+2374
+endobj
+79 0 obj
+<</Length 80 0 R>>
+stream
+q 0.1 0 0 0.1 0 0 cm
+/R7 gs
+0 G
+380 240 5360 7080 re
+S
+5 w
+0 0 0 RG
+380 7320 m
+5700 7320 l
+380 7320 m
+1100 7320 l
+1100 7680 l
+380 7680 l
+h
+S
+0 0 0 rg
+q
+10 0 0 10 0 0 cm BT
+/R8 12 Tf
+1 0 0 1 52.6641 752 Tm
+(01/06/12)Tj
+-0.659766 -12.8 Td
+(19:09:23)Tj
+ET
+Q
+4980 7320 720 360 re
+S
+q
+10 0 0 10 0 0 cm BT
+/R10 28.8 Tf
+1 0 0 1 505.478 739.2 Tm
+(14)Tj
+/R10 18 Tf
+32.0258 0 Td
+(/14)Tj
+/R12 14 Tf
+-261.887 -2.7 Td
+(Perl-notes)Tj
+-100.125 18 Td
+($cmps112-wm/Languages/perl/Perl-notes.dir/)Tj
+ET
+Q
+0 G
+0 g
+q
+10 0 0 10 0 0 cm BT
+/R14 11 Tf
+1 0 0 1 57.2 718 Tm
+(411:)Tj
+12 TL
+(412:)'
+T*[(413:)-600(Substitutions and capture.)]TJ
+T*[(414:)-600($a =~ s/\(.*\), \(.*\), \(.*\)/$3, $2, $1/;)]TJ
+T*[(415:)-600(changes "abc, def, ghi" to "ghi, def, abc")]TJ
+(416:)'
+T*[(417:)-600(if \($date =~ m/^\(\\d+\)\\/\(\\d+\)\\/\(\\d+\)$/\) {)]TJ
+T*[(418:)-600(   my \($month, $day, $year\) = \($1, $2, $3\);)]TJ
+T*[(419:)-600(   my $wholedate = $&;)]TJ
+T*[(420:)-600(})]TJ
+(421:)'
+T*[(422:)-600($a =~ m/$x/i; matches value of $i case insensitive)]TJ
+T*[(423:)-600($a =~ s/abc/def/g; global substitution)]TJ
+(424:)'
+(425:)'
+ET
+Q
+Q
+endstream
+endobj
+80 0 obj
+1103
+endobj
+4 0 obj
+<</Type/Page/MediaBox [0 0 612 792]
+/Parent 3 0 R
+/Resources<</ProcSet[/PDF /Text]
+/ExtGState 16 0 R
+/Font 17 0 R
+>>
+/Contents 5 0 R
+>>
+endobj
+18 0 obj
+<</Type/Page/MediaBox [0 0 612 792]
+/Parent 3 0 R
+/Resources<</ProcSet[/PDF /Text]
+/ExtGState 21 0 R
+/Font 22 0 R
+>>
+/Contents 19 0 R
+>>
+endobj
+23 0 obj
+<</Type/Page/MediaBox [0 0 612 792]
+/Parent 3 0 R
+/Resources<</ProcSet[/PDF /Text]
+/ExtGState 26 0 R
+/Font 27 0 R
+>>
+/Contents 24 0 R
+>>
+endobj
+28 0 obj
+<</Type/Page/MediaBox [0 0 612 792]
+/Parent 3 0 R
+/Resources<</ProcSet[/PDF /Text]
+/ExtGState 31 0 R
+/Font 32 0 R
+>>
+/Contents 29 0 R
+>>
+endobj
+33 0 obj
+<</Type/Page/MediaBox [0 0 612 792]
+/Parent 3 0 R
+/Resources<</ProcSet[/PDF /Text]
+/ExtGState 36 0 R
+/Font 37 0 R
+>>
+/Contents 34 0 R
+>>
+endobj
+38 0 obj
+<</Type/Page/MediaBox [0 0 612 792]
+/Parent 3 0 R
+/Resources<</ProcSet[/PDF /Text]
+/ExtGState 41 0 R
+/Font 42 0 R
+>>
+/Contents 39 0 R
+>>
+endobj
+43 0 obj
+<</Type/Page/MediaBox [0 0 612 792]
+/Parent 3 0 R
+/Resources<</ProcSet[/PDF /Text]
+/ExtGState 46 0 R
+/Font 47 0 R
+>>
+/Contents 44 0 R
+>>
+endobj
+48 0 obj
+<</Type/Page/MediaBox [0 0 612 792]
+/Parent 3 0 R
+/Resources<</ProcSet[/PDF /Text]
+/ExtGState 51 0 R
+/Font 52 0 R
+>>
+/Contents 49 0 R
+>>
+endobj
+53 0 obj
+<</Type/Page/MediaBox [0 0 612 792]
+/Parent 3 0 R
+/Resources<</ProcSet[/PDF /Text]
+/ExtGState 56 0 R
+/Font 57 0 R
+>>
+/Contents 54 0 R
+>>
+endobj
+58 0 obj
+<</Type/Page/MediaBox [0 0 612 792]
+/Parent 3 0 R
+/Resources<</ProcSet[/PDF /Text]
+/ExtGState 61 0 R
+/Font 62 0 R
+>>
+/Contents 59 0 R
+>>
+endobj
+63 0 obj
+<</Type/Page/MediaBox [0 0 612 792]
+/Parent 3 0 R
+/Resources<</ProcSet[/PDF /Text]
+/ExtGState 66 0 R
+/Font 67 0 R
+>>
+/Contents 64 0 R
+>>
+endobj
+68 0 obj
+<</Type/Page/MediaBox [0 0 612 792]
+/Parent 3 0 R
+/Resources<</ProcSet[/PDF /Text]
+/ExtGState 71 0 R
+/Font 72 0 R
+>>
+/Contents 69 0 R
+>>
+endobj
+73 0 obj
+<</Type/Page/MediaBox [0 0 612 792]
+/Parent 3 0 R
+/Resources<</ProcSet[/PDF /Text]
+/ExtGState 76 0 R
+/Font 77 0 R
+>>
+/Contents 74 0 R
+>>
+endobj
+78 0 obj
+<</Type/Page/MediaBox [0 0 612 792]
+/Parent 3 0 R
+/Resources<</ProcSet[/PDF /Text]
+/ExtGState 81 0 R
+/Font 82 0 R
+>>
+/Contents 79 0 R
+>>
+endobj
+3 0 obj
+<< /Type /Pages /Kids [
+4 0 R
+18 0 R
+23 0 R
+28 0 R
+33 0 R
+38 0 R
+43 0 R
+48 0 R
+53 0 R
+58 0 R
+63 0 R
+68 0 R
+73 0 R
+78 0 R
+] /Count 14
+>>
+endobj
+1 0 obj
+<</Type /Catalog /Pages 3 0 R
+/Metadata 88 0 R
+>>
+endobj
+7 0 obj
+<</Type/ExtGState
+/OPM 1>>endobj
+16 0 obj
+<</R7
+7 0 R>>
+endobj
+17 0 obj
+<</R12
+12 0 R/R14
+14 0 R/R10
+10 0 R/R8
+8 0 R>>
+endobj
+21 0 obj
+<</R7
+7 0 R>>
+endobj
+22 0 obj
+<</R12
+12 0 R/R14
+14 0 R/R10
+10 0 R/R8
+8 0 R>>
+endobj
+26 0 obj
+<</R7
+7 0 R>>
+endobj
+27 0 obj
+<</R12
+12 0 R/R14
+14 0 R/R10
+10 0 R/R8
+8 0 R>>
+endobj
+31 0 obj
+<</R7
+7 0 R>>
+endobj
+32 0 obj
+<</R12
+12 0 R/R14
+14 0 R/R10
+10 0 R/R8
+8 0 R>>
+endobj
+36 0 obj
+<</R7
+7 0 R>>
+endobj
+37 0 obj
+<</R12
+12 0 R/R14
+14 0 R/R10
+10 0 R/R8
+8 0 R>>
+endobj
+41 0 obj
+<</R7
+7 0 R>>
+endobj
+42 0 obj
+<</R12
+12 0 R/R14
+14 0 R/R10
+10 0 R/R8
+8 0 R>>
+endobj
+46 0 obj
+<</R7
+7 0 R>>
+endobj
+47 0 obj
+<</R12
+12 0 R/R14
+14 0 R/R10
+10 0 R/R8
+8 0 R>>
+endobj
+51 0 obj
+<</R7
+7 0 R>>
+endobj
+52 0 obj
+<</R12
+12 0 R/R14
+14 0 R/R10
+10 0 R/R8
+8 0 R>>
+endobj
+56 0 obj
+<</R7
+7 0 R>>
+endobj
+57 0 obj
+<</R12
+12 0 R/R14
+14 0 R/R10
+10 0 R/R8
+8 0 R>>
+endobj
+61 0 obj
+<</R7
+7 0 R>>
+endobj
+62 0 obj
+<</R12
+12 0 R/R14
+14 0 R/R10
+10 0 R/R8
+8 0 R>>
+endobj
+66 0 obj
+<</R7
+7 0 R>>
+endobj
+67 0 obj
+<</R12
+12 0 R/R14
+14 0 R/R10
+10 0 R/R8
+8 0 R>>
+endobj
+71 0 obj
+<</R7
+7 0 R>>
+endobj
+72 0 obj
+<</R12
+12 0 R/R14
+14 0 R/R10
+10 0 R/R8
+8 0 R>>
+endobj
+76 0 obj
+<</R7
+7 0 R>>
+endobj
+77 0 obj
+<</R12
+12 0 R/R14
+14 0 R/R10
+10 0 R/R8
+8 0 R>>
+endobj
+81 0 obj
+<</R7
+7 0 R>>
+endobj
+82 0 obj
+<</R12
+12 0 R/R14
+14 0 R/R10
+10 0 R/R8
+8 0 R>>
+endobj
+12 0 obj
+<</BaseFont/CCYBCR+Times-Roman/FontDescriptor 13 0 R/Type/Font
+/FirstChar 36/LastChar 119/Widths[ 500 0 0 0 0 0 0 0 0 333 250 278
+0 500 500 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 611 0 0 0
+556 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 444 0 444 500 444 0 500 0 278 0 0 278 778 500 500
+500 0 333 389 278 500 0 722]
+/Encoding/WinAnsiEncoding/Subtype/Type1>>
+endobj
+14 0 obj
+<</BaseFont/UFODQI+Courier-Bold/FontDescriptor 15 0 R/Type/Font
+/FirstChar 32/LastChar 126/Widths[
+600 600 600 600 600 600 600 600 600 600 600 600 600 600 600 600
+600 600 600 600 600 600 600 600 600 600 600 600 600 600 600 600
+600 600 600 600 600 600 600 600 600 600 600 0 600 600 600 600
+600 600 600 600 600 600 600 600 600 600 600 600 600 600 600 600
+600 600 600 600 600 600 600 600 600 600 600 600 600 600 600 600
+600 600 600 600 600 600 600 600 600 600 600 600 600 600 600]
+/Encoding 87 0 R/Subtype/Type1>>
+endobj
+87 0 obj
+<</Type/Encoding/BaseEncoding/WinAnsiEncoding/Differences[
+39/quoteright
+96/quoteleft
+126/tilde]>>
+endobj
+10 0 obj
+<</BaseFont/ZJDUGB+Helvetica-Bold/FontDescriptor 11 0 R/Type/Font
+/FirstChar 47/LastChar 57/Widths[ 278
+556 556 556 556 556 556 556 556 556 556]
+/Encoding/WinAnsiEncoding/Subtype/Type1>>
+endobj
+8 0 obj
+<</BaseFont/ENNZOX+Times-Bold/FontDescriptor 9 0 R/Type/Font
+/FirstChar 47/LastChar 58/Widths[ 278
+500 500 500 500 0 0 500 0 0 500 333]
+/Encoding/WinAnsiEncoding/Subtype/Type1>>
+endobj
+13 0 obj
+<</Type/FontDescriptor/FontName/CCYBCR+Times-Roman/FontBBox[-9 -218 775 727]/Flags 32
+/Ascent 727
+/CapHeight 662
+/Descent -218
+/ItalicAngle 0
+/StemV 116
+/MissingWidth 500
+/XHeight 460
+/CharSet(/L/P/a/c/d/dollar/e/g/hyphen/i/l/m/n/o/one/p/period/r/s/slash/t/two/u/w)/FontFile3 83 0 R>>
+endobj
+83 0 obj
+<</Filter[/ASCII85Decode
+/FlateDecode]
+/Subtype/Type1C/Length 3466>>stream
+Gar>GGuR^D)LjIepXUg28Q1Gr,cB+2CfNl=.sA9P/F"'(+KM5e&0MOIY_IfV,S7h5=[GXbKKrWQ
+Fp(3<YZSlPmC9Ok4[nOUZ$(9D3VRfjF3_EXB28JoF5D3*^%ZsDGJEV@IeW_&#2un=?n`FUU*VhZ
+r7+[8S.qCcIMKDX6,('`>fJ=iA5CsOB![d8U3>[.["sPSq/j@M@Y,]9q?lY8#od4uQjcHhV)LfF
+:ut8(1(/ac@\Vl=>.J\(+&CI*gpg4+=S9Fb0N=PqacHgqdhbG^WEbQ1Q50<t(d_k.V34edL/b"j
+bSR.PV2<[6YJmA0`S&+IM,^3GaGY^%6J`?X$OU(LRQeEs=-@X70OOUfEoC@#7\N?i--dp'VW@]*
+KHQ'NR9Yl@?Vm[p&Z)@],;LOmSCN1+euj@`+?h%pLe(ts&P^1TYs^^ZSQJU>&n+0fZ'O$6r/K>r
+lm7%9Q\^t75Cu8,#Th51iBn:kB,RD%Sd"R9BP7/sH[WbZg3e?ZjfttpG6&l6JQ"6AQ9kfrLX0:_
+HJoH=j\&Vt#J&nHj8M.NSS,BnDf?Z]D7.UoHE<S6!id$/.(qOQ&o)B_"2m-3lt?ge&TI#[Q[K^e
+R3(TF!@7q@Uf/XcPL:FY^U_jSAft-*muu%64"++thSHr3N-5"t&q+j.O'^5l+kLuVrSQPaDj\&+
+9]f6V"g+TqeC$k1Yoi]:iEqt5rRX0/?5;\bh"_=.WFZe0d#P5Bkrk5!!r6ZSF`[^L5'cr.T>mUG
+SEb84c7o`i^)-`cc/ZZrrZ%,e>fO2&>*'K8&W7f0n156G35%MM!cjU-YmG@Z[=bTh\n6$fijE/N
+X2coJ+C=g`p;)6u08FuSp:d?8QmBKg:f/$-Pc9RAoC1L=\HD$7:>DAm6:$L>IqqSaeCXcY(I+_k
+g[&D)SnD6J-/@'tCTSVn?>E,qJ>ri&_._V09(QM6J0";t#F^:T&.BR@m;B;"%*e].D0&,RJisUA
+B=Q#/8Waa@mMC6U9QdUo)7kW5ROk&(X40QB\o_5,+'ll*YPWBAiN)bBge.K*9@'cD/i2).<$GWP
+1=YR5OQ1.,/8WC5\g]*mAD^5KK*-_s=eeT%5*GK"ZK:ThBhMM^^SnWC>;ld[W1Xp7`R[jUf?4b/
+;/:;59olWtj0!3*HKUL`f2(Q?IlJdJLem)KRU5(;9b)JEbRI+oFjjV,)J7)[6[gW>7.$E:k<-OS
+A1X'gD)m>e>>9MLhcNoVAi,==P7NmW6I#\HZ,10XJuWRdl`22lg)90cp4e.Z$T$g+Zbq/rF&AO_
+:l'A\)YXsIScG8c^TtO.3?R?,hfig>rGKj>E-`6HR=CZ@@NX)YT+Kp&W-*VHX9P#llir[SWD\9-
+-EU=P.$U%[+IJHX1*tj<nNCWt(7_C>eY%PV14r<!ikIH.dH5WDNu_^6"-0=RqQt%>q4gu^n'cB\
+MqmB&OB:[I1gn781En^)<93?[CT4ss%CeZO![6(16X@s&P8<ATOu2)fV-WPIYnUE")c]2RJUeKF
+[F/)m6T-"NZo<t$criFfTY%eWckVV.;NCqH3DJ3sA4B9Fp-)Ys`dhtVI;=-r73gepOP/>G8Se@h
+JG,sgZ\r,kplZ5D\Z#+15`ag5YOIE&rAhp?]q9;pg/=+=_#e-4ZiJ,I1i)C.oG!<3G=3R`HJ<mG
+JP4\Pe*6.4W%ln+"P)(l-=h\qTruKT[k*9K(Jo[0eE+g36D[_7Z61N$1nA`&qIo'Y,sJ4QcJ2`J
+FQj':s6)E_U=O_278d&e;/*aF?<2_eVL7HlTE1\n8&t,YC$83!e58=orn??*o+QV6K"R,QF4F`:
+JOZ2u(9Ip5E$p"EY&RE+joBLu[Ip+/G#4sQi+>E9(59S;&V+@\@9Up!'BDOqPG@%MhTk]#rAi!b
+BCt%hP&K8$mX_U$r$V]#G2L?uT4`(i3S'p#[g<r\S)it::;lJalKCDJG&kM"G\+m'5sg`^#MK<[
+fBrfOk4-R%_(i[9Vo(Z:!I@a'MqZ7+*esP8<mEMkNs769b:K\'W+r>0'nR=b[(+1QkUh$ESS?`Y
+k*:Iog.'SFi"<$KY^d&^iZUa3.Y8??Ufc+ce>p(0is"Vc>pi,F])cO=+JZ3kTN<T6$o.s<U[R60
+0Pfh5m5$PTYl\iJf<B&sK/!S@$3tV_Ce9r[7StSE?T+f#2\&nrK(otjr)5t4hGDMM_9P$)J.bjk
+8`F/I.,"qUro``ZnG(Q<9MFuU]6G("q<l=d9B[#ROghEi]/tX+E7Z@!IAFBjn!>E3">fs9;LAaG
+F8Mu.21=[@qUftmkMjk@-1i(DdZ,jS;lA5o<n#kafc2C<;9E_['EXn\!OSQUYf-m+nSe`c<3L")
+?U0X9/Fmdb/8i,mEoNR,7jLnrWNE9QGWpjnF8-alp@#t''4qcmEugV&EI4'`()aoYp])_)VI!sc
+C^O"k']rX'"1NseM;7+:Z38,rQ+Fhs-.=<*&f'(mO"*NW'Nlh)`njF9I-Y\-e1?)scoHd!dH/<G
+D=nUP0d*nWc\gG<CO"@bA?E,de>&&hQC:9b"ALo]h8:;S-p!@a:#4MH8/\$Oi=6gq=3Mf^mBA2f
+E_@=iH7-"J]%bXgF]r1mO15ugUF-9Ce2_CDp.Y?LPQpm(1(Si$o'$\A.7__X(EK8']_I?@h'_[=
+,Ns=kiq9?0d4>a/$[Z/PXVLAPSkj\B5Tp>[\CUln%^=,]DF:$`Mue]ma$j6%6%N:t<T*-1mcsN\
+FNXg5d2>0n1HV0`\W,t<>'hhQZ6>^'G,nku@^J1YM2'G?J>f0kL<`-VHVdi]V\U5geb$*2TM&KI
+bBQ"-7G`[M5s'9`I?W9nqlD(K"B;-46aNtN`lN4OfK)__RXfVsTXlJ>`R<LhbW1R=FB<(AJ>,!b
+5.s/&>Btc%7+H%BkVC(g0Q:j<r<.^nm>>9PPsPEVPa=lYkp3eAjOWGBl.XMf%j)"#@G8[2,3*_h
+A,*&aM)tnf+h9L5"E2\b+(%^2^4o/4,`]RTR(tT'$#JXZE6T-UMsL$g#(GYMDGFN@<7[Pj5M4TB
+5FC2lj5ibrHHN.\P>?hA45#k`hr1Z;m/R'dS8#Z&#:'hJGa]+?4+gX=?oL#'1t8p;S..@Z40=rf
+_6X8pZH<PIau!\`WY@)or=6'2[`!nq61RP(Kt:!%hdkY`+#6DJ?H1N`e"_"rLCfLrBB)]Go]o!\
+\'\L<0CRfo;fl8QC-"R`U<-GkG+&IZIi99;L>_u7e:u3Q"#m:p:uPA!X-?lK7@h-fgB_EKA!3>'
+.P><7M'pu]_$7)66pP:IQY#8N'ZsC>N"Xl#-e%tS?()_3O;\;'CL^0&rsgp9C[?uD;u6;>\:3K\
+i21qL51Vsbkr=PqTonoN;HM^PKo9,^*T@tkD`F?JHk0,e!kH/1PeH8`3]f*;XVHjo5B7i7Ft1i[
+Zn!ALZNg7U?"C#E8%[CU$Qm#@d'RK6KD%`l$0"0V5?UP~>
+endstream
+endobj
+15 0 obj
+<</Type/FontDescriptor/FontName/UFODQI+Courier-Bold/FontBBox[-21 -205 623 695]/Flags 35
+/Ascent 695
+/CapHeight 597
+/Descent -205
+/ItalicAngle 0
+/StemV 150
+/AvgWidth 600
+/MaxWidth 600
+/MissingWidth 600
+/XHeight 451
+/CharSet(/A/B/C/D/E/F/G/H/I/J/L/M/N/O/P/Q/R/S/T/U/V/W/X/Y/Z/a/ampersand/asciicircum/asterisk/at/b/backslash/bar/braceleft/braceright/bracketleft/bracketright/c/colon/comma/d/dollar/e/eight/equal/exclam/f/five/four/g/greater/h/hyphen/i/j/k/l/less/m/n/nine/numbersign/o/one/p/parenleft/parenright/percent/period/plus/q/question/quotedbl/quoteleft/quoteright/r/s/semicolon/seven/six/slash/space/t/three/tilde/two/u/underscore/v/w/x/y/z/zero)/FontFile3 84 0 R>>
+endobj
+84 0 obj
+<</Filter[/ASCII85Decode
+/FlateDecode]
+/Subtype/Type1C/Length 10685>>stream
+Gat=N$!\.qgAXL]A886T`j)1R!a<#">O>F+lWUFf^&XlO,(qQ7>7r%t&.UuK#pCQ*[Lcs]'K9"@
+]%3^ef%S]$D/X@+Xkg.b[I"jH6bhOY9L;haqS0f6-aI8pcLNU6q`O<b%cKF(i,CY///9PPM*g4!
+/eLVA@m?@+N92gt$t<Q984#U<4eAh=^.PIU)u`1\&.TQ:!JYi"^,!lY3)fA\r5UK>H'.USE)L_9
+9>rWbEMCga"J=;TDV@9oo&M7UT?NfaDk>;3<;.-"AKgT<ctK'Apm7e<89%=&89D^Q5"kG%OccAG
+T?t[/R':h-TRH](p9BZq$]5@Ln6%B$'ZJ"HPC-\D3mhTkN#=FLibrnhM5'\j`quhP7uMfHpomud
+oa*nq],!p*=<dHC)WSR`p>*7?nLG7/93dml.QJngn!_ba[;#NhKrj1H+`q5H-ILuF/J223[mb-E
+R(RK4i7)&]G#.!O6S_S$9/c[,3H+clc$/TCH"6$Pp=?_Wj56Girm'g;-SCiU&7^Oh`&qK[Z%89<
+]LH]_hBKrORu$UQAmthHKm90@8k^M=&X/%<`+3<^Z%VTkQ4d+&Ips9MN<gZ`-)M@!M&F5=@OCUd
+0oK.*bU-@&D\/t+3Q)iq9k#^E2e!d^QWQK]+l4PP+Pn8r&dsP)`$420@PRBcZ'-#"";6)k(GUN7
+M35a""GcIj"qf^F#;M,*,XrGPiY@%j?6siLJ=q],6:a4/p^i&a?fH??2\#k9dkT/)6*Ca/i5,"E
+m^\bO_;3/F:[31u'Lgi,/pm*Q_;@KWeW>2Hrq/V5:i^7.YfXesGqo1Br_'/EYN3I:%j(8hLfX?U
+3cO0LO``>'Hb%&[P'=M3T;0\kSiQZG=6-Ol?Hj4D'O2FY#TJ/'qZQ^CHp76Eme`UEIc"[CS+!a>
+PK";qq.8ooZ*r6g^K*PDA"7SpTAtduMoKNZE$r:UiRmJ:?[#1S-I&!$Gqsm?[40:sKMK'8<A6:F
+lHdrA:]#P9B'/9Mbg4(Ef`;ml)]]p\%609Kg;lu2@t?+2Tp@/BBcmjUFOCeU?=h?["r%c7'qdsq
+.k&s6/\hG3b0kCF>c5r+!=E4t]hfslj*Fb/OE<Z:2lI-')ka?tBR0nJ%OggXDqEW@G\,S8!VGeA
+W'OaceA_J<JZQH,KmjLMbp;bo/R3J8<qqq)gcG@'#E3W7bWcEC1Fq^hU_7?+VC">O/JZ3SLs!(L
+\J14-H#Z*K;.Ofe7B2Og'o(#9Ge.NFkfqGtWeRQFrnXoY)D#a#YLsTeKkNJb?XdaQ?LCDD^O*)K
+C.Ko1-\/7Bi(D.si.L"=HV8O5/O1Qj#c*uKAQl2UL4JYJS-ddfb,[&qp"mKc.[@OlRn4q.8WH]6
+Y#%`@'I4UFmBUG^j#%!\l:h$e;!HfL2DLk:O=H>"1>FsNW^q!S^fb?Q(RgE_\bd%=,+V1>lIE%S
+HLs,`_;mA6p(o^,lS0:jVFaMd;;NoQ4EFkX;HZP^EsE17`W:K._gcX@FN5_En_\e7cr)XUl,[b[
+Q7-i);be(!nMCOWhn/F-F]$oAAg*d,d8\uT2X8>n+![og'm;bg;ome@an;ZC9b!af8I+g_TeH'#
+>sB;N*9\KT</A%4MhYa"B\kJjTW4,Pr82<'95OO):f6Kb!FD>8!QuLR@h*b,i;kSegM$4?if6N8
+BI"j1KBthn=#^i@LjXf%Kt.l\Df0Do]P.,\=gOE$rp95\QbF+o\&\\V3A;NcnLN,9E%Y+/[H+#t
+HPNK'\Oo_p?sPX\N9e%?KG$kYHn'FG]BU,8Z*>!B3F.o$?0/_I((SK)=&BQ0WCI,2*`?t)\5g2/
+IWDO.l*3)3M:2<r"4*hHG5`s(03@:DVE72siJlJ+1RQG2<LSE\[O"VVI5ICI#,@mU%H0o#RK?ha
+*q5^r4t:>-+_[l.[t-$/2PDTI4X2I5;\1/X+B':.%9Dlu'H6Pf9o&3Bn$c*]rmK;tOOad(,_krC
+p]L%iPtn;WRa`Y!$qbYsOs7TJ(t;C^jFNb)SQ\hZB9XkkqUEo,+@D]kb(^92E^62uWZ7O)*O$Pg
+FNK=1\_n-a.kGrCqAgO[l*3GtT=$tJ+Fi?A7.G4YF=/KFK@,Ypk)OSIhGM:!<>^tGBRrgt8mq"J
+^+-%GjP!^$D'\(.-@e8e)AT^A\tnoq+Imb%Xl#Z%le689Pdf.B#]/']rA!4;Dhd`=r8`A@][f=Q
+NItmipZIPckT(_#djb_>#,ta6l/',qe5@C+'g-T3K?p+(pqoN_@*:-"lP671HFuWg<Q[*sE_Rm:
+UR(J^-G[X"F*N)tTL0>i,FmF2FLul1q$ji;Fllr`l0<'B%X!X6B-L.H!ZE^W@:[\4TctsbNsH^G
+I%'$36+lgIYiK1oS]JG_m%a].?q5O13&3654C^P<m>+4:4R;KEQB%Xt@XH6Tat@HGaY5ad@*]m6
+/7I+taXU-B$_k89,&.qYIk8[R#63sEFtstmLAa.8$EosV\"48-8[*pJpBQ/j,#Ub&'8:ET,'a_*
+![:!:H$!Ui1M?oNjiqq5[dlo*d8#2,Z&cKSk%u*t%,;&nl*")4Lt=*`'RH_^qkM[.%g0%5ONR`P
+OIrT"[\oG1?jt"<8B3nji1s;bM%M&iO,"gC5N>Fi<X7t*SCFg/f;IPLJPl`f$gP;rRN(Pe^G-=>
+$41H(qCK=m<8n5bQ!B%k<rt+a*U-iQ!9K6oNo>1jhup]d>Hf/M/2Weh""?6FeeqcRl<V]nIrG\8
+2telAcJ#,`K\6!L+T_u/"Hl"0M]WI22iKWq6WRn^^6iI5<,GX#]hE!2Z3V[l&]QN_%mn_$>2Rfm
+*,K^[c3(Pl'==1[i%g5'bMWS;!jDm4_*N!9\G+2c>i?*;Vnr$fGg;)0I12,XT%jqJh\j)!g(H\T
+T@nHj*)7WglG5hI#Y)Tq*m@T.P;XbV'\HU)X>:^`'%h_KiO)7Z&Q4<474Hkj[TDY<@c3bND_8I3
+%"4qgpXL#3(0-'o6jD)=KPei3[g&,MU'6F,&lU>f&GE8#l&)W_Sgu2u'!nkPPQ5!<Z+`*WXS`];
+.fI8M0ABrsn#dEq=b;PJ)-6(RH*RKCTj/-#<7u!/fjg#!A@oV`kh,<#c:%UJ-gE/U*c9Ms/>1#-
+'3ogk'NZC<ZSfW80TP7*8D67=!*B@$8k!lb2VA[]RC^3:mFM!N`qoOqk)8.-BMUI<kop-V<9Y+Q
+R'&7+(#_:MJd8;1VAiK0Q_jbn1*\u]_S:=GQj6[2D;2dA>NB7tOBTX+n(+R"]'#%0f?sU!?\!3o
+s#rl^$t&4KUMq(sE<(^1DeZ`0N@6r;Q0I9jB]T?e=kH\a@&(k1/2]MJf/N7^@HnD]+Q'iF%?foB
+=fTaQ%U4l<TUN/6<Q/LK1l=-+Y(V>LD'/t;M_[oS72e=fE3V)6l[WtU%d&`/%Q5lf2"Hq&qS\fW
+c'hu&LQZhD!&_YA)tV7r5[CS_)rK7/\<?+08lghhTPulfPcP)!JFke_1Cm!BV`*[6*IK5_m;3-A
+_NMZ9TsO_iTeDlCkmgC$3)5q/_%aF&Vf-23h1f3(DVl(nmK]]`ii4e$=H@6=mmYbP*7PbeH("2n
+?pja]eu4>uA*GAW"jgXl5=GbRaQpsG?+d\Jrjg)bP>"2iVNCEm_WX<niSfNF`uY*JIIOIFQ<YP.
+<*C32K*aV0)c+'/[kA65$ZIMR3&#qgcu0eC)@^tScVfn.fhE`>$[p3HJq(RS\c(,Hf-$gn*lQFI
+h(['emsphY-gB8)Qhh-A'bmTa@!f]Pd:!XjjsZCU&e[QCTg/`KHN-V&-Pi*B^"A,KQt%T;-L\QP
+Io!c]Y(2G]A'Lp3=q6/qWGWro%p.2gd7Wgont5E`7P,S;hS$d@)O])RW,t)9ajl9i?o3!HSAh$n
+Y",hl_5T:WLH"=3de>"#c;CH_P%([h^I2:)Rl"KIn%=,5KQ#1lf,V\hr=2hgfilKO?6eEM37L[V
+UAi5h"R[JK?[Mk`o37`V(*H/fcjZ)9k__d?hP<;B&[WE[$5rqfUJ<9O-Lg^E7HR*j=^ZOA0#./u
+Bc)Z%(>iKnkfOW=c"R4Y[likGD\6h]gBslBiKhX(f+*5Ye<6qK'm:IOGn)1McjL=ub3rc2cCN5D
+\MGs2.nVHj?g$U[mYmtZYIi!tPi@C,[G7r'fSkS1Yj=a;cj3Ke@>8:(WENUP2@Ao#nCbB4Pr&Xi
+GiS<sp4a6RVMCNrkm^oJO)i5Z/F01m:H`D[p#X]ZN-g,O%uPKS%X!Ri(YY=,"agY0<j\E24'?t<
+g]S_=?Of11G[ba5,-W-TPjAuZE2"G&)Dl!SM6#Z/73ES+A>6RnEJu;o-_P(T]5Xt$e6#Wo[+cOZ
+B6nN935^SP:d73G\5=Gti2jH<_;Ea<o:hF20Tg;^kt7"L\/JSoVkXNhM`*BQ3#f0okq._L:?\1n
+DT'IuUd)lcoPPENe!P9;mN?L@a=b5O2_&($&.LqqLkP;Ro."#$JK?&\`,`U_@maLe>+\N3&Y8YN
+MR5&^BM<'UP;3kEC;E)LJ70,"dc<+rd+EIUgKK5`B*,4^rJ\r"%HC=Od>BCm-9u`*">^bF8qeBG
+.4[JK*O"7f'o\c2DSsjT&"B#)2PIge`H2lc!6kii:@gfkJ^f9>X]hXR.8,#f6'b6U'm,=U3#:Lt
+E7Wm"@i0,&%Rp]5hiZ7f*oNc&I>`D1WuL;8FZi>%_rp\kA^MV5NCN;+!8G&?6h4%8jlQWhkR<Q;
+SX"gF3pY:ocKaY1ff2.GV7#Mn'=gM@-RB'Dh+X@AF0H-*KmN1cNi@iP10M.lGP#@MH8q%B9W3b/
+QWa<\QOJfSW@=:?mKDm@@!5TQp+V/qG64KTaZW?[c0N24YW4.OGMqoaNF3K'=hUeO=53/$8Y9GX
+5#QF8R0nQ\Da6T8+]1Ec5drgRYU7X0%RNI73s>^O!"bEOCZB6:7aM8V9hdK&CaPbAObn9%YS\bI
+@R`UM@u#U3Le/pt/'8d#C$;_'B]QsSGR0ic;).YL(\%^D#r@##^[k:b^;=+iik^7c*?7b9(XY`t
+:k/a57MF0oj>d]qTiW@L17WgjQSRku6$71P$!8o>XGg"eBQ>j2e)TJo"2SfXc(8m>b'u[C^43!T
+%Shr*@HK/+]</rLE5;LiHU#jS5bi&W-1iZjJDQ%U-_(C=5X'Q1cM]3_m[C2nD=+B=hnuJ3o?fe"
++W_OYDq_"Do=p&ck^!4*rs7GcoIh1Y!I27u/0UV?#;E_dD/p$;=DPWMIl^6Y,VWsA\V5R><E.OL
+8M)Yc_?g+/U*+j8o8>P%([_h#YBcp#C9[Y3rVptLDsR,@/>4Qp*"KL4.0NS!B8,8=qEO'8T\XYJ
+9Z*R0;kT,%*](PrHi]E'V.9P%L(!IFiO[8&3m$kSiF)6-Z*6rlK>No^d9tB+b29c$kTJ0GC!8P_
+?XnTi(MYdAg]Z\t]RH7K8"D_Jg=.J)_V;dhI$4Q*6U,GS:?_Bs+m7$q^C0"!o>#X)1DL5ZcsM1)
+@F<L\)\t&2Hf`^<f<0MHqA,'3/:D3=arW;o*5e<jo.ke3XB*f]>TM1CMkI3IE7L#9/j'3^K7`^B
+E;1oOlAhcbk)FP6!Iqk4B78!:He,@oP";pE5Y?k`j)'JSD8&kd]_Ior;]\c#?(=XZCK!tMaK6=c
+&+'/T9"Wba_P5&A=;d[/ejpGW.2e!_.EDXl]S&V/^IoX\HQ[L='P-:EB2ad`29gk'eJXrC5YoID
+LF:hGmhA0/HP\L%h(8$2%+O@EXn6M=jQRq'I03]t[aJ6@QS)5U:P!ggSn4$eA-Xl?LdDJPD<%.g
+a%:iOBmB@!2I0'T__n6"fn[;rG9u\eG3KAoe,e_l6T34-Z>oM4j>#md1oPg8Fmn!c1LgViPc9WE
+<&tohp\eqjO5=S6F;eD^I[bTfN>/&\^BCXQ$L:7c[jJs_)!;4g5Yp6r[YR(qCIA-Q"VCEX)\/Y%
+i&NcI^;g9]MmVSj"assrO^5d>8</E79Q8q9IF>_H@"sjBa"kY,UVUHui3"snkK>5,mth9Z@dGp(
+?ok]%BjqHP1/KC\EFG-EMg+)l?_"QDr20=-B;:.iW=AEfR3-"-ZR[d]1JGoXD"$$o^3Jb.\n8K<
+=UTb[8>/g4OL_l$H=nIE-#],1l&`I>JCPi''72qAID"-4++F.K>ftIP#%;%:M!5B?,#adcfoT;e
+Xhs%F]Y3k3[F6kHH9kC2!(G0S[&LYB`V/[[\_9*B"`M3>K3/L:?5R>&dnU&8kTmJt%NDtjJ7K8M
++28,M5]i\AB&[^H4bbud#`YDt".psQlJjV>*tHB.C%D_0WfT#rlspCI7Tlpl$Ja?4K!l05+MRlN
+K>4G$l#ARk*@_pD.T^f`Q/R^AQ)h)*!U%mBVI*tHUh@l%XA_=l``8qOF"WuQi?W^OqSL'5EU@Y\
+h5fm'o)s?uT[./\`i`"#*DdSa'`[J&CUik<<s-3e3PiJ\6Vu\GfNZcn3>[D$8p/>9gJ5K!fW[6(
+1kV?(R/*(*_`>OVe4QmukeCre`\S\B@-aM8TKH/NaqHj,l(r/>.ahLA.9+UqbNt]OmPu>;>4Oke
+!)ArC2dSOOHP,'$,XVspSI62TQZo)$83eYd'M2#)M:o/lfu362%=aq9/pS=nkILq+UX<lH+h,*[
+YGf(Ri8&aSA5fd&Xj>DV=omF/OmMasKL&:P"XqOBkBgD?9ibZh-0(+h+,_'!`@@FU(/WOlNs!t.
+%d:`X^!&\CI5*KOl]s.P+;R@GVB0?q=Eu'HcQ$X]+T$>6?kABK^Zf-OEUDs.6`*tADZ%kn?W<Y"
+*l?dae83]GhqI_nB]i*+@gA&+,(sF^B:CP,g)D1M71,b-_p/'4bt_;mM5bCiSVII7n'OER*(4+E
+Oq/=1b!9h41HG*u^]8kU$pul[@1mc8\I^'@_A_iVlit?`/N\0K]k\`K/Q.,O/30)G%GMs4Fr$QR
+G;,Y2ot@BibKi"4HRKC]lVB=,4YShMd-6enmbqOl%=N65)Z*CQm)j_7gh47".YUQqE->=1>Vq2e
+[oKD/3Vam>KBA=!_A-A^>k:oc9:O?=$%Rn)8;PI=WX[':Gj!D^bT`gp)L1#:X(i&'#"9D6ih.-K
+U6d*!:*tu@[C=YMDD<&PAt8ps:'LA01Z\kg)p(L0dIVkqYH0N:iN/qh1u!GlfBWUclW71=_,Mrp
+11;Zgf@ZYIdkS_!"?h$cbQ$o/k84@3T1?bU3.4gfn?/mnW\)KHV,dlL%Oa^!O=W8G-#;?l<=-(a
+U&nOFb<_q)%_O-b>O(KW>,(?V$WG0oW2S(iK2KlgZM7<ZLLCtGIsUrSojh.GBUM(uK2l+]MQ%Mq
+`"US\,,kQjqWE5pC5s:T^#Q++Ct0hdVG_SVk+7jU]Ylq,ET0;lPZF<S_[>2R>Zt$/T[Dp<YZ"(5
+N1Yao'mjJGCH4d>peH4on!p=:TR7F*"9MIhTmkb8o>(iM$4k@bcYq^t'RDh%'"A'>QT$e2T<mD[
+hbiU,?g&kS+5OZe[ULebcb-N6/!_apr9+I!#agAfoU&4H6*3n#c`>Mu.r]bqQtR3d?b_&X!6sVV
+(pu+W-\?267"Zm\>!o_MVbdQ8'O&^bG'3c(NKr(Ip>h*EX[&sf3mW@ho"_de971$1^!Hh@]+ER'
+\&2no[O#%IScPS!UTFh\6[i?-\_rr,DTC8sJ'gfs0JLd5qn\ifGb,,im#g*[B=;W&r:tC5-W^LK
+dod>bi=MK/LC&.N%mIb`?<d$bgZl]7-5K',^-Y1GCe>0H(5O/ErBUQ$>Er;p;/W`T#`9SlZj($:
+m8.LITPh4,gEB0^S1m=?CN#(5$VV^$L@Kc/la`rb+A'faFbXE-Sub1LK,CFOS/\S%:;TJ[W_@<A
+FnP$:!Q:;-/_&JE)tGRsZfGM_-/q1+^=p[m(@uFI^\Vhm@WI^cRT-0sfJP]9LnPBgr:Y`LlKAAU
+3XtGLg]97%RI!%U]`m^=4rooU'HL,Deu00%f9Bqu'W4jo_SCV^O;XB3M2C+C?Og+hW5;Yp`/q+G
+!0fGt;7tp^&KLMhGuN`0@9^):,.J&!lu-7`JntD2,IWmGUVP:,'+sm\8%+bf"I.6ugG[&N-IeJV
+$MA^R_]aBs"[Lm)*ka?XBYV<?+!8Mmi4or<q<9"?j"4/QN8r3;2'F,k:N!a1^rq-_g8"E_k-a>O
+=?qN)Y6cH$,SEk(=^:.0U!iHQ4O<U/%'UdLb`pRq=$I.,2csEP/S%7<I%@uJ>?E(/??sE?#cPM1
+oO#6R@/nkZ;7`2EU"$$`Qa-%I(pj%s*]W59bLY,iK[!$0c[j7R*&7$ioKooUSJ`nrbobqq^;"]U
+'mTG#n1IuMLHU%S44&V3gu<.Vg7Zgqb$J(Z5I/c3mdtcjoA1/K=<5!bbQ:G\hR3S-?L`U1/+@b%
+VS'IIWMSr4\3rXNRh*R+#YE\]+>=oZ?$iH^q)G&(59@=S<ClVJ<M;#%86PQDY?WR[fP&9O7[#ma
+Au04+5iE_fSQKYX.;:CH^tF[6ql&Q2ft<nhn+FJ$QJYBHE/tmV<76%<GpZ?Y[>C=RGD\e>W]XEj
+L7f$ak=:f8fR^LPPa1@^;gVAb2ajO*qcscdikd@Yr%VI9)#fe1L''p)D_L^3B'-s+kc:iZj5:"#
+R!'SA&2en8\8Cq&=+^\S?WRJfDdPTKkJ7cj!fhYIk77UnB5fI#h!.oI%=r!b`ei(0I_.quXP)-O
+p?[Xu)aaP-aR8l_g#*m"rqfcun8C>AI_PK0YS1C&.i;W_O=iam0?:#0"ZjO%><OP.qIF,dT<^!H
+(&G5=j'[K"_5r7OkQE_YqJ9N3!*OT8#:,"DXTBk=6@sI>WS!7RIX1;'^C/BEYh]Hn_!TX$`1@>3
+BO0(ln/h'p#n7[;:Yc%0;2G,Bo\\C6Q_-DmO@('0j6meq#>eY!ZsCCk\Fo^Ck5B4_3btbbdI5_%
+S!a_-0q>#@e5jQ>_uaj+/%F4V<->?'""j"G7cLIoAU4!flKGCOR2T(C/:07_f:+'=2:%jpi^-gD
+WdMA9I@?D'p\8]m[#pbi:9Fr&5dkl97:KPtV=LS##T%GE@4u:l1pPSN[D3a)[3C7.TWk@EYI#-!
+n>aH\V3=N>]+;L6Ceggg]&1%-rLAnZ.C.P.)R!j(H^chVQl,uBgbKj+m,s/952Y6tLke7rgT6b#
+7a<)ON]t&J_ui23rg.e,,tW;4^iB\?A1VYZFMhk_2OJuCl_EN:V-XroX&D8#[3m)EeWt&0oh(S1
+eL>UG_K>N\S*Mn>*W,Pl_Y(c;)))*i!OJak<hMIMTJ0cojXCO`]uYfe,-,Fmi]XPQ]*Z1Pa/):8
+C1D+Sk-ZM99O9dhn`@8g[N)9WHF,O]-!sIc;_G1`CK$A3eCfLn?seIFOK6R(9du":6)`:DAnC.:
+kN1jJ$G7)KC2I"C;O[hFSYnfu*,NC)Uh5PC7=&$7beE"f0dfa<['^s7[KS]*od62Ro2G?%kMJ3_
+];`jN4^\Wg-bXKDRYC38?ZYu5ldnA5\*hrOi@</`NT!1>,157T;:EqDVP[B;1o"0aZ;@G(B$);J
+Q)Z\a4%"Pt(Ca,=.@!0XSS"%N*me]1709DMlQ5Wg]7#DBhWl5Gc%cD*JVGN8?"MM)6+Jp&e.h!Y
+k%_TZ-:tHN."OK.6f#!MKm>CG:fO^23(M"YVn'=aPc+2s0@CVe!`6$R-5^#oi&OgB"4:bA&<&nt
+$jZXX'B$Bb>"(G"p9n%(elb_ifK-jrb(_["0rXZG8Z7JE.<=oI@ZAJ5nUR(Cm+qK"74GWq6@R,3
+:snG"7SWkm/KAm3TW[:IJA7d[b5G`+pKa&[Z(e1uph7(D]E6`97:j?&FACr'NT:m,7.8MPR@-';
+Q>_U/5LNY7HcYQ\J\^eO$q1:TTC2.g&LXu!7eCsJUMJSD&STGhm7A\IJ*QQj,bM?ub.9I#T?6jk
+I>uMPl#KpI@T7M/gU0^.'NlmaU3aS]U4gqA+BfBoSX(Ns"u8e[P$&4)"3!;eh%<qT1P^!c;^m0-
+oSH%?jlea%D5qHQW7Bi0U.eH`RZjTI!pqg"+n('m70Z<U"tH`9?^7PZ.[6>W9qVb+k8Oes,r!QD
+@gS+:/Bl=>!cJrIbK*<%eTg2S1b,.&WVVRR9]s,@d)1K=q/cn%7>E'1F:$sn5pLmj5_GL;ml'1V
+m4?Atk,GD_X>O`"j_!IlkS`n(p]Wd_s64%WBeX%ODkq+]/#-AoJWXHtT&]<b_X*t%,h)^0Q+?cK
+c,=BS2sCeSlGa-mhk&1s1r<V0\Q9$8%Tpj`1rC-T+$Tqs;pb-\]BI5a]@-j0$XdqofmuaH9Z+Jn
+$h/&.',+k2Y\]L/D^!G]a^?)*+$'.&j=-F/e0'C$WD'Co2!PTO$1>Spa5I<n#CqFn+`A7Z7\<:+
+Nd&0B39?&Sf":YoYBuecmp3[5#MnuZ-8W@mnl3?p/so,Q]tNcJ]fo4r.`aWhCFLd=>?&S)+sCd^
+6'$6hJI")Q$@3"1&tl^Z@#8IZ_6(`n?O6ZE:d9DSjA],o=^jj$N_Ccn8Ij%u%<dBFdeH2(;eak!
+k7jH&K-RQ!oZq<n"'5h+Xf"jVKe!`M&6aSUb_bHm$\`Ja04lVYq_Dk0<bpqP[:Uho>6X1R3Oc@^
+XA`31Zs?83?<SN-If!LGk$h7<Y^+t9WoFdR\`tHV*&73F]KSBmrL2IlhAgl?@8<C6GfM*W`5In]
+=u(e!PHE&$.i`H7>04g;+$]e=DTIp[6XCmkrs-%@8/D~>
+endstream
+endobj
+11 0 obj
+<</Type/FontDescriptor/FontName/ZJDUGB+Helvetica-Bold/FontBBox[0 -24 528 724]/Flags 65568
+/Ascent 724
+/CapHeight 724
+/Descent -24
+/ItalicAngle 0
+/StemV 79
+/MissingWidth 500
+/CharSet(/eight/five/four/nine/one/seven/six/slash/three/two/zero)/FontFile3 85 0 R>>
+endobj
+85 0 obj
+<</Filter[/ASCII85Decode
+/FlateDecode]
+/Subtype/Type1C/Length 1552>>stream
+Gaqc4HV@@>(dFA8b8lmX@2H.5HSn"&$3M!9!cn\M.M,sCO$OkpPWLOa87`RSgjDfYE@t0dVE=nc
+nsG&e'Nc+U\n&OPpqglFgu=hb9pX_mGKF:8DN0S-5NePakPN!bH[LT8hHl#4./uuA:i:FFKr1ff
+G/</El,6Cj%.b+LA[kDr0jZCA7p36\rNJVC(#H'$Epj",;o-NRi1,a:'X_fXd8YIlEsln:G&S&(
+X7@HW\iHr=Z$O*T1HYWKiR4f=]PTG`;`^.I"aas?FgE<L99lddJM6)#K!VhoN&+Tf<f<klX\#a7
+imN+'0.jSuEtPC6>[0rrCm;<FkO9e[X_$:&e)iD<Mt=aa?N_N/l)g?*\@M4jk9hP?&XnYX-iaFF
+2\Ct":bW5B;ihnH,TVt*$:VAd/2`,B7c!Qkp?M8gQ'KGYMu/ac;;"3cA\<O>k'mO0<>s*AJm9`7
+3^=i0!BJ[7**@`T6-FL-]+?XMA6`PLZRlBFE(j6=EF7l%Ae&$8nW3HC8)O&(6Of)1KO>)>rd[4G
+\sD3DL`%E2m_Wi0f+rd3E]=6K`lYiU5-f)cPrK+j&[p:mFB,d<)So5=ki'/(D9(K"brqGV!+6,b
+:=$g>`Cb<J'"IK)d6:bJ()r)C1XSCX$rDdUTW-BO$MdSs=9U1?%+9:$`eNZ#_#Iip&:VbeGglg.
+8S5rf,I@.&>mERCJ@^U:\U39*7@,_\AW&f_LeL/MqP((I,a]1el.>8(i!")\%H)g?LS4jRZes]@
+rQT]'rh/)+o9a>]6-`AtldfAO$)8#mBoh:^#%g-plo3:Mg4kbcCBK(^iCn%e'fGd3*?jAL1@0:?
+)LLuZ)fZY""+kn1\.7(3WiPCJX?V?*o:>f:1p\c2]7YRS*l<K%i.?_c4g_GO`(Zo'ajGre3Uqf@
+&hEbjHeX=g#7O82Bul&#YAAi'OSo>49(_`)<fX@r-iE51$*>0Kk[RtBf"3YX_n@ZddBIL[%c?g4
+4tY1/T9@;l&jR\8TC_t@7)=i75=t@V`B+4/[L"/=0^q[KVu\Q=/r`:IBL%(s1@[0*TA;Z7ZcUlu
+FEUgagNY>G[2@@dknV=-Ya?i"/aQY`B'F0UIAutjV_9/2_@iFOj[r07^-R*b"QRh_CG,@kcJsB/
+m&V^F,0=Tn9(0?UL&#MiQQ$-!Id.l`U4"JHGelc4KSRl[U4O2g0n2AqmF`GUDi*=?FAdIs"rt,1
+*CpA:o*TEt+-7`CfI5FoJ3V]%:YI*VT8?ES&DLH2jNs%S[anV@*ah71]1[`ILi*7`c8]ONb\I:#
+oEIK<5u#j=d1?Tr@uipX$%.Kro0`@<L8\N2HdQ\9PA@D`A/e:9)fiPCB`lC>+fEt$GQ+<F6U=1r
+Z2a[F^4E=+#%\F;&7D/;)VL=;F=tqH#7:&O$'b4/4RD@HfmTjiD[\HDX15WQYi*fiT)$h'R5TBr
+M'+U(SHT%"VlGe:C29gZ=#IB>,h/9N]Rb"gh5>NHY%4a/Y"_SEj=O_FGkUR=So68sQ&[2r])beJ
+2E&t@lO-W=JT$f?!E6$6IL,l[F>d<X~>
+endstream
+endobj
+9 0 obj
+<</Type/FontDescriptor/FontName/ENNZOX+Times-Bold/FontBBox[-24 -19 476 691]/Flags 65568
+/Ascent 691
+/CapHeight 691
+/Descent -19
+/ItalicAngle 0
+/StemV 71
+/MissingWidth 500
+/CharSet(/colon/nine/one/six/slash/three/two/zero)/FontFile3 86 0 R>>
+endobj
+86 0 obj
+<</Filter[/ASCII85Decode
+/FlateDecode]
+/Subtype/Type1C/Length 1230>>stream
+Gar>BCJ7Z>)#b#YIH*4<4)m]&cOYRN0O*>V$H&RV)%C/si##N#o["ZDD75/,dgE]8n3mO:5]kA3
+lXYuOIV]A:kq\*5$+RoI?&[0ARp210fcT+h5%f'8A(cqAH1S\pqnCC?4>2?JEJS%jKIXgSHO=u.
+m$:bc=kq)SR;l]%bi9Mqlamm7W+&G_6kX&V;*ON:.h0e$6LV8-R=\rXiuaXF\_MbRK%9#FF9hM@
+kN1kCr5TY57O-M)pijT?o,ba5jDlNmcJ)WB#Oh;NE$f;RDAQJ9X$,CLH+52ZKt#"GhIs4dD;8oY
+?#[D]m@;Id`tdk3L-hlP<%0eqI3*:@bL,D3.U>NHJi!!6_<:Un!$R$)kRBsb[i()98jTF)%Afi_
+cj#_c2POi['TcQ$!Ha%;B#`lZid0T:MquK/k7=a4Kc0Z3I5bq<da#UC'gF44`U;+>\pB[1KHeKj
++rU$TQa;%\SqG:b[OPW-Go>)nhe4X@Jc-V[TE4=:6U#'=CJS,:ZL>KTGMSh8GE-tUY48]G:(%(;
+jH!YP^(`KS>`GOS-H566T-W/`d)k3m8Y#KQ7e*qPUV=RY^6:??;l<A(4>lK+f03VC`7P[OojWuL
+0WEKm%%\VdYdg]jaadPOK9Cd9O=:hRK9c*XSYfm=A.qZ.Q*:^(q!j.2X5p_cnb1]Oe^S_DD&S>/
+6ZA=L=lnFuL"WNf$PMuZ@NB/)F:g/dkc\a%IC%GS7!#:JHc6e2-:bfbfC#KO4QM`XE^T\UCLWZj
+?B7d-7I[dE/JWVK[K;4BW4MGV"QorYIWNdpel\8IiYu4upkM'qUp2I3c8l6nh&bOjFmC8#J`f<*
+3>[a(mQ@[iT+$aeN8aC6h^sk<\ruTfnoD1AXCbC2/>UW$4M:_?bfkY[ZqqkY&&j,uqouiVX/ULD
+4t7pZNTlHn;umu7r:5X8X/);1WNscm,37*%5jnStOE1o\0"T-,:/oWC2#`l;ef,GEn'VCb?+7nY
+jMntoVtpW'7R%k=39D(_EWMcW0[ii@H0Ss^+VqTWg=4rD5OVj*9HY@nN\-os*)/<SBGQTB<<>j9
+\pnfko+io+IYDZ[@[Md*[Pu]_]Y!A*j8K]^#W@$2^]8W?gnh!242&Pc1TmEWUn"rAg:A5C1->t2
+.HEfE"3$pG)gG"ch0eP:Ecg:"'#.PPKq%W;So:^$Dd?\,7O9ZjY>+EjMbRWY%P&do^a2AmM2B#B
+,UO],&,bM$`r~>
+endstream
+endobj
+88 0 obj
+<</Type/Metadata
+/Subtype/XML/Length 1398>>stream
+<?xpacket begin='﻿' id='W5M0MpCehiHzreSzNTczkc9d'?>
+<?adobe-xap-filters esc="CRLF"?>
+<x:xmpmeta xmlns:x='adobe:ns:meta/' x:xmptk='XMP toolkit 2.9.1-13, framework 1.6'>
+<rdf:RDF xmlns:rdf='http://www.w3.org/1999/02/22-rdf-syntax-ns#' xmlns:iX='http://ns.adobe.com/iX/1.0/'>
+<rdf:Description rdf:about='edfee19b-8374-11ef-0000-ca0b20087426' xmlns:pdf='http://ns.adobe.com/pdf/1.3/' pdf:Producer='GPL Ghostscript 8.70'/>
+<rdf:Description rdf:about='edfee19b-8374-11ef-0000-ca0b20087426' xmlns:xmp='http://ns.adobe.com/xap/1.0/'><xmp:ModifyDate>2014-10-03T16:52:49-07:00</xmp:ModifyDate>
+<xmp:CreateDate>2014-10-03T16:52:49-07:00</xmp:CreateDate>
+<xmp:CreatorTool>GNU enscript 1.6.4</xmp:CreatorTool></rdf:Description>
+<rdf:Description rdf:about='edfee19b-8374-11ef-0000-ca0b20087426' xmlns:xapMM='http://ns.adobe.com/xap/1.0/mm/' xapMM:DocumentID='edfee19b-8374-11ef-0000-ca0b20087426'/>
+<rdf:Description rdf:about='edfee19b-8374-11ef-0000-ca0b20087426' xmlns:dc='http://purl.org/dc/elements/1.1/' dc:format='application/pdf'><dc:title><rdf:Alt><rdf:li xml:lang='x-default'>Perl-notes.ps</rdf:li></rdf:Alt></dc:title><dc:creator><rdf:Seq><rdf:li>Wesley Mackey</rdf:li></rdf:Seq></dc:creator></rdf:Description>
+</rdf:RDF>
+</x:xmpmeta>
+                                                                        
+                                                                        
+<?xpacket end='w'?>
+endstream
+endobj
+2 0 obj
+<</Producer(GPL Ghostscript 8.70)
+/CreationDate(D:20141003165249-07'00')
+/ModDate(D:20141003165249-07'00')
+/Title(Perl-notes.ps)
+/Author(Wesley Mackey)
+/Creator(GNU enscript 1.6.4)>>endobj
+xref
+0 89
+0000000000 65535 f 
+0000029296 00000 n 
+0000052452 00000 n 
+0000029145 00000 n 
+0000027005 00000 n 
+0000000009 00000 n 
+0000002010 00000 n 
+0000029361 00000 n 
+0000031922 00000 n 
+0000049389 00000 n 
+0000031719 00000 n 
+0000047460 00000 n 
+0000030704 00000 n 
+0000032115 00000 n 
+0000031077 00000 n 
+0000035984 00000 n 
+0000029402 00000 n 
+0000029432 00000 n 
+0000027156 00000 n 
+0000002030 00000 n 
+0000004312 00000 n 
+0000029495 00000 n 
+0000029525 00000 n 
+0000027309 00000 n 
+0000004333 00000 n 
+0000005971 00000 n 
+0000029588 00000 n 
+0000029618 00000 n 
+0000027462 00000 n 
+0000005992 00000 n 
+0000008225 00000 n 
+0000029681 00000 n 
+0000029711 00000 n 
+0000027615 00000 n 
+0000008246 00000 n 
+0000010429 00000 n 
+0000029774 00000 n 
+0000029804 00000 n 
+0000027768 00000 n 
+0000010450 00000 n 
+0000012899 00000 n 
+0000029867 00000 n 
+0000029897 00000 n 
+0000027921 00000 n 
+0000012920 00000 n 
+0000015123 00000 n 
+0000029960 00000 n 
+0000029990 00000 n 
+0000028074 00000 n 
+0000015144 00000 n 
+0000016778 00000 n 
+0000030053 00000 n 
+0000030083 00000 n 
+0000028227 00000 n 
+0000016799 00000 n 
+0000018254 00000 n 
+0000030146 00000 n 
+0000030176 00000 n 
+0000028380 00000 n 
+0000018275 00000 n 
+0000019797 00000 n 
+0000030239 00000 n 
+0000030269 00000 n 
+0000028533 00000 n 
+0000019818 00000 n 
+0000021928 00000 n 
+0000030332 00000 n 
+0000030362 00000 n 
+0000028686 00000 n 
+0000021949 00000 n 
+0000023361 00000 n 
+0000030425 00000 n 
+0000030455 00000 n 
+0000028839 00000 n 
+0000023382 00000 n 
+0000025808 00000 n 
+0000030518 00000 n 
+0000030548 00000 n 
+0000028992 00000 n 
+0000025829 00000 n 
+0000026984 00000 n 
+0000030611 00000 n 
+0000030641 00000 n 
+0000032416 00000 n 
+0000036672 00000 n 
+0000047735 00000 n 
+0000049645 00000 n 
+0000031604 00000 n 
+0000050977 00000 n 
+trailer
+<< /Size 89 /Root 1 0 R /Info 2 0 R
+/ID [<E72BDE9C86BB818A51B4AC5123C81713><E72BDE9C86BB818A51B4AC5123C81713>]
+>>
+startxref
+52649
+%%EOF
